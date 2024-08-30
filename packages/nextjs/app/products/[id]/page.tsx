@@ -7,22 +7,62 @@ import ProductCard from "../_components/ProductCard";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { THE_GRAPH_URL } from "~~/app/constants";
+import AddProduct from "../_components/AddProduct";
 
 
 const Products: NextPage = () => {
   const { writeContractAsync, isPending } = useScaffoldWriteContract("Duniverse");
   const { address: connectedAddress } = useAccount();
 
+  const [products, setProducts] = useState([])
   const [productImage, setProductImage] = useState("");
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productQuantity, setProductQuantity] = useState(0);
   const [planetId, setPlanetId] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const route = useParams();
 
-  const submitProduct = async(event: any) => {
-    event?.preventDefault();
+  async function fetchGraphQL(operationsDoc: any, operationName: any, variables: any) {
+    setIsLoading(true)
+    const response = await fetch(THE_GRAPH_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: operationsDoc,
+        variables,
+        operationName,
+      }),
+    });
+    setIsLoading(false)
+  
+    return await response.json();
+  }
+  
+  const operation = `
+    query MyQuery {
+      products(where: { planet: "${route?.id}" }) {
+        id
+        name
+        price
+        productId
+        quantity
+        seller {
+          id
+        }
+      }
+    }
+  `;
+  
+  function fetchMyQuery() {
+    return fetchGraphQL(operation, 'MyQuery', {});
+  }
+
+  async function submitProduct() {
     const payload = {
       productImage: productImage,
       productName: productName,
@@ -48,7 +88,7 @@ const Products: NextPage = () => {
     } catch (e) {
       console.error("Error posting product", e);
     }
-  };
+  }
 
   const isFormComplete = () => {
     return productName && productPrice && productQuantity && planetId
@@ -56,11 +96,26 @@ const Products: NextPage = () => {
 
   // check the planet and product id
   useEffect(() => {
-    if (route?.planetId) {
-      setPlanetId(route.planetId);
+    if (route?.id) {
+      setPlanetId(route.id || 1);
     }
-  }, [route.planetId]);
+  }, [route.id]);
 
+  // Graphql query to fetch products per planet id
+  useEffect(() => {
+    fetchMyQuery()
+    .then(({ data, errors }) => {
+      if (errors) {
+        console.error(errors);
+      } else {
+        setProducts(data.products)
+        console.log(data?.products);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching query:', error);
+    });
+  }, [])
 
 
   return (
@@ -76,47 +131,25 @@ const Products: NextPage = () => {
               </label>
             </div>
           </div>
-          <ProductCard />
+          <div className="flex flex-wrap justify-center items-center gap-5">
+            {isLoading ? (
+                <span className="loading loading-spinner loading-sm"></span>
+              ) : products?.length ? (
+                products?.map((product: any, index: number) => <ProductCard key={index} product={product} />)
+              ) : (
+                <h2>No Products available</h2>
+              )
+            }
+          </div>
         </div>
 
-        {/* Put this part before </body> tag */}
-        <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-        <div className="modal" role="dialog">
-          <form onSubmit={(e) => submitProduct(e)} className="modal-box flex flex-col">
-            <h3 className="text-lg font-bold">Add a product.</h3>
-            <p className="py-4 flex flex-col justify-between items-center gap-2">
-              <label htmlFor="name">Upload image</label>
-              <input
-                onChange={e => setProductImage(e.target.value)}
-                type="file"
-                className="outline outline-1 p-2 rounded-lg"
-              />
-              <label htmlFor="name">Product name</label>
-              <input
-                onChange={e => setProductName(e.target.value)}
-                type="text"
-                className="outline outline-1 p-2 rounded-lg"
-              />
-              <label htmlFor="name">Price</label>
-              <input
-                onChange={e => setProductPrice(e.target.value)}
-                type="number"
-                className="outline outline-1 p-2 rounded-lg"
-              />
-              <label htmlFor="name">Quantity</label>
-              <input
-                onChange={e => setProductQuantity(e.target.value)}
-                type="number"
-                className="outline outline-1 p-2 rounded-lg"
-              />
-            </p>
-
-            <button disabled={!isFormComplete} type="submit" className="btn w-[100px] bg-base-300 place-self-end">
-              Post!
-            </button>
-          </form>
-          <label htmlFor="my_modal_7" className="modal-backdrop"></label>
-        </div>
+        <AddProduct 
+          setProductImage
+          setProductName
+          setProductPrice
+          setProductQuantity
+          submitProduct={submitProduct}
+        />
       </div>
     </>
   );
