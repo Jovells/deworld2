@@ -9,20 +9,21 @@ const StoreCard: NextPage = ({ planet }) => {
     <>
       <Link
         href={`/products/${planet?.planetId || "1"}`}
-        className="bg-white flex items-center flex-col flex-grow shadow-xl w-fit rounded-3xl"
+        className="bg-white w-fit sm:w-1/5 flex items-center flex-col shadow-xl rounded-3xl aspect-auto"
       >
         <div className="p-5">
           <img
             src={
-              planet?.img ||
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/ABSA_Group_Limited_Logo.svg/800px-ABSA_Group_Limited_Logo.svg.png"
+              planet?.img || planet?.planetName?.includes("Pearson")
+                ? "https://assets-global.website-files.com/637d4c3b222767826da03ef4/637ff65ccfb898870679226e_Pearson-logo-p-500.png"
+                : "https://www.databankgroup.com/wp-content/uploads/2018/01/databanklogo-1.png"
             }
             alt="Landscape picture"
             className="rounded-full"
-            style={{ width: "200px" }}
+            style={{ width: "500px" }}
           />
         </div>
-        <div className="w-full border border-black text-center rounded-3xl">
+        <div className="w-full border border-black text-center rounded-br-3xl rounded-bl-3xl">
           <h1 className="text-lg uppercase font-bold">{planet?.planetName}</h1>
           <p>{planet?.planetDescription}</p>
           {Array.from({ length: 5 }).map((_, index) => (

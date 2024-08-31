@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAccount } from "wagmi";
 import { Bars3Icon } from "@heroicons/react/24/outline";
+import { THE_GRAPH_URL } from "~~/app/constants";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
@@ -17,24 +18,24 @@ type HeaderMenuLink = {
 
 let isSeller = false;
 
-export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Stores",
-    href: "/stores",
-  },
-  {
-    label: "Products",
-    href: "/products",
-    // icon: <BugAntIcon className="h-4 w-4" />,
-  },
-  {
-    label: "Dashboard",
-    href: isSeller ? "/seller-dashboard" : "buyer-dashboard",
-    // icon: <BugAntIcon className="h-4 w-4" />,
-  },
-];
-
 export const HeaderMenuLinks = () => {
+  const { address } = useAccount();
+  const menuLinks: HeaderMenuLink[] = [
+    {
+      label: "Planets",
+      href: "/stores",
+    },
+    // {
+    //   label: "Products",
+    //   href: "/products",
+    //   // icon: <BugAntIcon className="h-4 w-4" />,
+    // },
+    {
+      label: "Dashboard",
+      href: isSeller ? `/seller-dashboard/${address}` : `buyer-dashboard/${address}`,
+      // icon: <BugAntIcon className="h-4 w-4" />,
+    },
+  ];
   const pathname = usePathname();
 
   return (
@@ -45,7 +46,6 @@ export const HeaderMenuLinks = () => {
           <li key={href}>
             <Link
               href={href}
-              
               className={`${
                 isActive ? "bg-secondary shadow-md" : ""
               } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col outline outline-1`}
@@ -74,7 +74,7 @@ export const Header = () => {
 
   // Graphql queries
   async function fetchGraphQL(operationsDoc: any, operationName: any, variables: any) {
-    const response = await fetch("/api/graphql", {
+    const response = await fetch(THE_GRAPH_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -143,7 +143,7 @@ export const Header = () => {
         </div>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
           <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+            <Image width={200} height={200} alt="SE2 logo" className="w-[200px] cursor-pointer" src="/logo.jpeg" />
           </div>
           <div className="flex flex-col">
             <span className="font-bold leading-tight">D-UNIVERSE</span>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -64,16 +65,20 @@ const Stores: NextPage = () => {
     <>
       <div className="flex items-center flex-col flex-grow">
         <div className="flex-grow flex-col bg-base-300 w-full px-8 py-12 items-center justify-center gap-10">
-          <h1 className="text-[30px]">Planets</h1>
-          <div className="flex flex-wrap justify-center items-center gap-5">
+          <h1 className="flex justify-start items-center gap-2">
+            <img src="/planet.png" alt="planet" className="w-[50px] animate-bounce opacity-50"/>
+            <span className="text-[30px] font-bold">Planets</span>
+          </h1>
+          <div className="flex flex-wrap justify-center items-center gap-10">
             {isLoading ? (
               <span className="loading loading-spinner loading-sm"></span>
             ) : stores?.length ? (
-              stores?.map((store: any, index: number) => <StoreCard key={index} planet={store} />)
+              stores?.map((store: any, index: number) => <StoreCard key={index} planet={store} className="cursor-pointer" />)
             ) : (
               <h2>No Planets available</h2>
             )}
           </div>
+          <img src="/solar.gif" alt="planet" className="w-[300px] absolute right-10 bottom-0" />
         </div>
       </div>
     </>
