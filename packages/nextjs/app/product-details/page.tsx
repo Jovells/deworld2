@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { DUNEVERSE_SEPOLIA_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
 import { Address, EtherInput } from "~~/components/scaffold-eth";
-import { useScaffoldContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
+import { useScaffoldContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 /* eslint-disable @next/next/no-img-element */
 const ProductDetails: NextPage = () => {
@@ -20,9 +20,8 @@ const ProductDetails: NextPage = () => {
   const [isApprovalPending, setIsApprovalPending] = useState<any>(approvalPending);
   const [ethAmount, setEthAmount] = useState<number | null>(null);
   const { address } = useAccount();
-  const route = useParams();
   const router = useRouter();
-
+  const searchParams = useSearchParams();
 
   async function fetchGraphQL(operationsDoc: any, operationName: any, variables: any) {
     const response = await fetch(THE_GRAPH_URL, {
@@ -42,12 +41,13 @@ const ProductDetails: NextPage = () => {
 
   const operation = `
      query MyQuery {
-      products(where: { id: "${route?.id}" }, orderDirection: asc) {
+      products(where: { id: "${searchParams.get("id")}" }, orderDirection: asc) {
         id
         name
         price
         quantity
         seller 
+        productImage
       }
     }
   `;
@@ -83,7 +83,7 @@ const ProductDetails: NextPage = () => {
           },
         },
       );
-      router?.push(`/buyer-dashboard/${address}`);
+      router?.push(`/buyer-dashboard/?id=${address}`);
       setIsPending(false);
     } catch (e) {
       setIsPending(false);
@@ -91,13 +91,15 @@ const ProductDetails: NextPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (route?.id) {
-      setProductId(route.id);
-    }
-  }, [route.id]);
 
   useEffect(() => {
+    // check and set the product id
+    const currentId = searchParams.get('id');
+    if (currentId) {
+      setProductId(currentId || 1);
+    }
+
+    // Graphql query to fetch products details by id
     fetchMyQuery()
       .then(({ data, errors }) => {
         if (errors) {
@@ -123,11 +125,7 @@ const ProductDetails: NextPage = () => {
         <h1 className="w-100 font-bold text-xl">Product Details</h1>
 
         <div className="flex flex-wrap justify-center items-center gap-5">
-          <img
-            src="https://www.phonelectrics.com/cdn/shop/products/iPhone14Pro-3_5a1ed88a-5967-4937-b746-08ace739720f_900x.jpg?v=1663959701"
-            alt=""
-            className="w-1/4"
-          />
+          <img src={`https://ipfs.io/ipfs/${product?.productImage}`} alt="" className="w-1/4" />
           <div className="w-full sm:w-1/2 flex flex-col justify-start gap-2">
             <h1 className="text-2xl sm:text-3xl font-bold">{product?.name}</h1>
             <div className="flex justify-start items-center gap-2 p-1 font-bold">
