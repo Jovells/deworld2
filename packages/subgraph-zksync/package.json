@@ -1,13 +1,13 @@
 {
-  "name": "duniverse-zksync",
+  "name": "Deworld-zksync",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ duniverse-zksync",
-    "create-local": "graph create --node http://localhost:8020/ duniverse-zksync",
-    "remove-local": "graph remove --node http://localhost:8020/ duniverse-zksync",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 duniverse-zksync",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ Deworld-zksync",
+    "create-local": "graph create --node http://localhost:8020/ Deworld-zksync",
+    "remove-local": "graph remove --node http://localhost:8020/ Deworld-zksync",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 Deworld-zksync",
     "test": "graph test"
   },
   "dependencies": {

@@ -19,17 +19,17 @@ const Home: NextPage = () => {
           </div>
           <img src="/solar.gif" alt="planet" className="w-[400px] absolute left-10 top-5" />
           <h1 className="text-center flex flex-col justify-center items-center gap-10">
-            <span className="block text-2xl mb-2 font-mono text-blue-700">Decentralized Marketplace</span>
+            <span className="block text-2xl mb-2 font-mono text-blue-700">Decentralized Escrowplace</span>
             <span className="absolute right-10 text-2xl font-bold text-blue-700 font-mono">
               <Typewriter
                 options={{
-                  strings: ["Decentralized Marketplace", "Fast, Efficient & Reliable", "Decentralized Escrow"],
+                  strings: ["Decentralized Escrowplace", "Fast, Efficient & Reliable", "Decentralized Escrow"],
                   autoStart: true,
                   loop: true,
                 }}
               />
             </span>
-            <span className="block text-6xl font-bold font-mono">DUniverse</span>
+            <span className="block text-6xl font-bold font-mono">Deworld</span>
           </h1>
 
           <div className="flex justify-center items-center gap-12 flex-col sm:flex-row mt-10 sm:mt-20">

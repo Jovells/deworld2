@@ -6,7 +6,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   4202: {
-    Duniverse: {
+    Deworld: {
       address: "0xe74aCe29853E840aD849b1d78C7B08602CA636Ff",
       abi: [
         {
@@ -508,7 +508,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -574,7 +574,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -645,7 +645,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -1317,7 +1317,7 @@ const deployedContracts = {
     },
   },
   31337: {
-    Duniverse: {
+    Deworld: {
       address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
       abi: [
         {
@@ -1831,7 +1831,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -1897,7 +1897,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -1968,7 +1968,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -2640,7 +2640,7 @@ const deployedContracts = {
     },
   },
   84532: {
-    Duniverse: {
+    Deworld: {
       address: "0xE7c86A836560f49f07F00674fF3c834aac3584D2",
       abi: [
         {
@@ -3125,7 +3125,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -3191,7 +3191,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -3262,7 +3262,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -3962,7 +3962,7 @@ const deployedContracts = {
     },
   },
   11155111: {
-    Duniverse: {
+    Deworld: {
       address: "0x420CD61BeeD23ef827df55edCFc1095406f4a148",
       abi: [
         {
@@ -4476,7 +4476,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -4542,7 +4542,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -4613,7 +4613,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -5285,7 +5285,7 @@ const deployedContracts = {
     },
   },
   10200: {
-    Duniverse: {
+    Deworld: {
       address: "0x13041cDFB971226Ac07c171A274cB72Ac8e209Be",
       abi: [
         {
@@ -5799,7 +5799,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -5865,7 +5865,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },
@@ -5936,7 +5936,7 @@ const deployedContracts = {
                   type: "bool",
                 },
               ],
-              internalType: "struct Duniverse.Purchase[]",
+              internalType: "struct Deworld.Purchase[]",
               name: "",
               type: "tuple[]",
             },

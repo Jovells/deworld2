@@ -13,7 +13,7 @@ import AddProduct from "./_components/AddProduct";
 
 
 const Products: NextPage = () => {
-  const { writeContractAsync, isPending } = useScaffoldWriteContract("Duniverse");
+  const { writeContractAsync, isPending } = useScaffoldWriteContract("Deworld");
   const { address: connectedAddress } = useAccount();
 
   const [products, setProducts] = useState([])

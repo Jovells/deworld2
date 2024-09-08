@@ -510,7 +510,7 @@
             "type": "bool"
           }
         ],
-        "internalType": "struct Duniverse.Purchase[]",
+        "internalType": "struct Deworld.Purchase[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -576,7 +576,7 @@
             "type": "bool"
           }
         ],
-        "internalType": "struct Duniverse.Purchase[]",
+        "internalType": "struct Deworld.Purchase[]",
         "name": "",
         "type": "tuple[]"
       }
@@ -647,7 +647,7 @@
             "type": "bool"
           }
         ],
-        "internalType": "struct Duniverse.Purchase[]",
+        "internalType": "struct Deworld.Purchase[]",
         "name": "",
         "type": "tuple[]"
       }

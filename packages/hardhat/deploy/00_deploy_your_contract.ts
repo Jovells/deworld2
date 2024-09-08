@@ -33,14 +33,14 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // Function to deploy contracts
   async function deployContracts() {
-    let mockUSDT, duniverse;
+    let mockUSDT, Deworld;
 
     if (isZkSync) {
-      // let duniverseAddress = await deployToSkSync();
-      // if (!duniverseAddress) {
+      // let DeworldAddress = await deployToSkSync();
+      // if (!DeworldAddress) {
       //   throw new Error("failed");
       // }
-      // duniverse = await ethers.getContractAt("Duniverse", duniverseAddress);
+      // Deworld = await ethers.getContractAt("Deworld", DeworldAddress);
       console.log("zkSync deployment not supported yet.");
     } else {
       // Regular deployment
@@ -59,61 +59,61 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
       console.log(`MockUSDT deployed to ${mockUSDTDeployment.address}`);
       mockUSDT = await ethers.getContractAt("MockUSDT", mockUSDTDeployment.address);
 
-      console.log("Deploying Duniverse...");
-      const duniverseDeployment = await deploy("Duniverse", {
+      console.log("Deploying Deworld...");
+      const DeworldDeployment = await deploy("Deworld", {
         from: deployer,
         args: [mockUSDT.target],
         log: true,
         autoMine: true,
       });
 
-      if (!duniverseDeployment.address) {
-        throw new Error("Duniverse contract deployment failed, address is undefined.");
+      if (!DeworldDeployment.address) {
+        throw new Error("Deworld contract deployment failed, address is undefined.");
       }
 
-      console.log(`Duniverse deployed to ${duniverseDeployment.address}`);
-      duniverse = await ethers.getContractAt("Duniverse", duniverseDeployment.address);
+      console.log(`Deworld deployed to ${DeworldDeployment.address}`);
+      Deworld = await ethers.getContractAt("Deworld", DeworldDeployment.address);
     }
 
-    return { mockUSDT, duniverse };
+    return { mockUSDT, Deworld };
   }
 
   // Function to create planets
-  async function createPlanets(duniverse: any) {
+  async function createPlanets(Deworld: any) {
     console.log("Creating planet 1 Pearson Consultants...");
-    const tx1 = await duniverse.connect(ruler1).createPlanet("Pearson Consultants", "image.com", "The first planet");
+    const tx1 = await Deworld.connect(ruler1).createPlanet("Pearson Consultants", "image.com", "The first planet");
     await tx1.wait();
 
     console.log("Creating planet 2 D-Bank...");
-    const tx2 = await duniverse.connect(ruler2).createPlanet("D-Bank", "image.com", "The second planet");
+    const tx2 = await Deworld.connect(ruler2).createPlanet("D-Bank", "image.com", "The second planet");
     await tx2.wait();
   }
 
   // Function to request and approve sellers
-  async function requestAndApproveSellers(duniverse: any) {
+  async function requestAndApproveSellers(Deworld: any) {
     console.log("requesting approval for seller1...");
-    const requestApprovalTx1 = await duniverse.connect(seller1).requestApproval(1);
+    const requestApprovalTx1 = await Deworld.connect(seller1).requestApproval(1);
     await requestApprovalTx1.wait();
 
     console.log("requesting approval for seller2...");
-    const requestApprovalTx2 = await duniverse.connect(seller2).requestApproval(2);
+    const requestApprovalTx2 = await Deworld.connect(seller2).requestApproval(2);
     await requestApprovalTx2.wait();
 
     console.log("approving seller1...");
-    const approvalTx1 = await duniverse.connect(ruler1).approveSeller(seller1.address);
+    const approvalTx1 = await Deworld.connect(ruler1).approveSeller(seller1.address);
     await approvalTx1.wait();
 
     console.log("approving seller2...");
-    const approvalTx2 = await duniverse.connect(ruler2).approveSeller(seller2.address);
+    const approvalTx2 = await Deworld.connect(ruler2).approveSeller(seller2.address);
     await approvalTx2.wait();
   }
 
   // Function to add products to planets
-  async function addProducts(duniverse: any) {
+  async function addProducts(Deworld: any) {
     console.log("Adding products to planet 1...");
     const products1 = ["Megaphone 20",];
     for (let i = 0; i < products1.length; i++) {
-      const addProductTx = await duniverse
+      const addProductTx = await Deworld
         .connect(seller1)
         .addProduct(products1[i], 1, "iphone.com", seller1.address, 100, ethers.parseUnits("10", 6));
       await addProductTx.wait();
@@ -126,7 +126,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
       "Blue house",
     ];
     for (let i = 0; i < products2.length; i++) {
-      const addProductTx = await duniverse
+      const addProductTx = await Deworld
         .connect(seller2)
         .addProduct(products2[i], 2, "iphone.com", seller2.address, 100, ethers.parseUnits("100", 6));
       await addProductTx.wait();
@@ -142,12 +142,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     await checkAndSendEth(seller1.address, seller1, "Seller 1");
     await checkAndSendEth(seller2.address, seller2, "Seller 2");
 
-    const { duniverse } = await deployContracts();
-    if (!duniverse) return;
+    const { Deworld } = await deployContracts();
+    if (!Deworld) return;
 
-    await createPlanets(duniverse);
-    await requestAndApproveSellers(duniverse);
-    await addProducts(duniverse);
+    await createPlanets(Deworld);
+    await requestAndApproveSellers(Deworld);
+    await addProducts(Deworld);
 
     console.log(`2 Planets created and products added to each planet.`);
   } catch (error) {
@@ -158,4 +158,4 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
 export default deployYourContract;
 
-deployYourContract.tags = ["Duniverse"];
+deployYourContract.tags = ["Deworld"];

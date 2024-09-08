@@ -19,6 +19,7 @@
     "@circles-sdk/data": "0.7.1",
     "@circles-sdk/profiles": "0.7.1",
     "@circles-sdk/sdk": "0.7.1",
+    "@ethsign/sp-sdk": "^0.7.3",
     "@heroicons/react": "~2.0.11",
     "@rainbow-me/rainbowkit": "2.1.2",
     "@tanstack/react-query": "~5.28.6",
@@ -38,9 +39,13 @@
     "react-hot-toast": "~2.4.0",
     "use-debounce": "~8.0.4",
     "usehooks-ts": "2.13.0",
-    "viem": "2.17.4",
+    "viem": "^2.21.3",
     "wagmi": "2.10.10",
-    "zustand": "~4.1.2"
+    "zustand": "~4.1.2",
+    "@ora-io/web3-plugin-ora": "^0.0.6",
+    "apollo-server-micro": "^3.13.0",
+    "typewriter-effect": "^2.21.0",
+    "web3": "^4.12.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "~4.1.1",

@@ -5,11 +5,11 @@ schema:
   file: ./../subgraph/src/schema.graphql
 dataSources:
   - kind: ethereum
-    name: contracts/Duniverse.sol_Duniverse
+    name: contracts/Deworld.sol_Deworld
     network: zksync-era-sepolia
     source:
       address: "0x0167996EfE7eFB6EEC3366694e26d935829d9916"
-      abi: contracts/Duniverse.sol_Duniverse
+      abi: contracts/Deworld.sol_Deworld
       startBlock: 3706942
     mapping:
       kind: ethereum/events
@@ -24,8 +24,8 @@ dataSources:
         - ApprovalRequest
         - ApprovedSeller
       abis:
-        - name: contracts/Duniverse.sol_Duniverse
-          file: ../subgraph/abis/localhost_Duniverse.json
+        - name: contracts/Deworld.sol_Deworld
+          file: ../subgraph/abis/localhost_Deworld.json
       eventHandlers:
         - event: PlanetCreated(indexed uint256,string,string,string,indexed address)
           handler: handlePlanetCreated

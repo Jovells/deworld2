@@ -10,7 +10,7 @@ import {
   ApprovalRequested,
   ApprovalGranted,
   ApprovalDeclined,
-} from "../generated/Duniverse/Duniverse";
+} from "../generated/Deworld/Deworld";
 import {
   Planet,
   Product,

@@ -27,7 +27,7 @@ export const Footer = () => {
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
-              <a href="https://github.com/Jovells/duniverse" target="_blank" rel="noreferrer" className="link">
+              <a href="https://github.com/Jovells/Deworld" target="_blank" rel="noreferrer" className="link">
                 Github
               </a>
             </div>
@@ -43,12 +43,12 @@ export const Footer = () => {
                 rel="noreferrer"
               >
                 ©
-                <span className="link">Duniverse</span>
+                <span className="link">Deworld</span>
               </a>
             </div>
             <span>·</span>
             <div className="text-center">
-              <a href="https://github.com/Jovells/duniverse" target="_blank" rel="noreferrer" className="link">
+              <a href="https://github.com/Jovells/Deworld" target="_blank" rel="noreferrer" className="link">
                 Support
               </a>
             </div>

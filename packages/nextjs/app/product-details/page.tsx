@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { DUNEVERSE_SEPOLIA_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
+import { DEWORLD_SEPOLIA_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
 import { Address, EtherInput } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { useScaffoldContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 /* eslint-disable @next/next/no-img-element */
 const ProductDetails: NextPage = () => {
-  const { writeContractAsync, isPending: pending } = useScaffoldWriteContract("Duniverse");
+  const { writeContractAsync, isPending: pending } = useScaffoldWriteContract("Deworld");
   const { writeContractAsync: writeMockUSDTAsync, isPending: approvalPending } = useScaffoldWriteContract("MockUSDT");
   const [productId, setProductId] = useState<any>(null);
   const [product, setProduct] = useState({});
@@ -63,7 +63,7 @@ const ProductDetails: NextPage = () => {
       await writeMockUSDTAsync(
         {
           functionName: "approve",
-          args: [DUNEVERSE_SEPOLIA_ADDRESS, product?.price],
+          args: [DEWORLD_SEPOLIA_ADDRESS, product?.price],
         },
         {
           onBlockConfirmation: txnReceipt => {

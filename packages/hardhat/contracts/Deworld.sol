@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./mockUSDT.sol";
 
-contract Duniverse {
+contract Deworld {
     address public owner;  // The owner of the contract
     address public MOCKUSDT_ADDRESS;
 

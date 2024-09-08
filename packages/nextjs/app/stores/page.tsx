@@ -10,7 +10,7 @@ import type { NextPage } from "next";
 
 const Stores: NextPage = () => {
   // const { data, isLoading } = useScaffoldReadContract({
-  //   contractName: "Duniverse",
+  //   contractName: "Deworld",
   //   functionName: "",
   // });
   const [isLoading, setIsLoading] = useState<boolean>(false);

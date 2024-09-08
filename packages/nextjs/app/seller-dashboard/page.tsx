@@ -8,7 +8,7 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 /* eslint-disable @next/next/no-img-element */
 const SellerDashboard: NextPage = () => {
-  const { writeContractAsync, isPending: pending } = useScaffoldWriteContract("Duniverse");
+  const { writeContractAsync, isPending: pending } = useScaffoldWriteContract("Deworld");
   const [data, setData] = useState();
   const [productId, setProductId] = useState<any>(null);
   const [isPending, setIsPending] = useState<any>(pending);

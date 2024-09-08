@@ -7830,9 +7830,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"duniverse-zksync@workspace:packages/subgraph-zksync":
+"Deworld-zksync@workspace:packages/subgraph-zksync":
   version: 0.0.0-use.local
-  resolution: "duniverse-zksync@workspace:packages/subgraph-zksync"
+  resolution: "Deworld-zksync@workspace:packages/subgraph-zksync"
   dependencies:
     "@graphprotocol/graph-cli": "npm:0.80.1"
     "@graphprotocol/graph-ts": "npm:0.32.0"

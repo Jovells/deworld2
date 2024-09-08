@@ -10,7 +10,7 @@ import {
   AppealRaised,
   PlanetCreated,
   ProductAdded,
-} from "../../subgraph/generated/Duniverse/Duniverse";
+} from "../../subgraph/generated/Deworld/Deworld";
 import {
   Planet,
   Product,

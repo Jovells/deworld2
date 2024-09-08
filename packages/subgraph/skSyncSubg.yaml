@@ -3,10 +3,10 @@ schema:
   file: ./src/schema.graphql
 dataSources:
   - kind: ethereum
-    name: Duniverse
+    name: Deworld
     network: zksync-era-sepolia
     source:
-      abi: Duniverse
+      abi: Deworld
       address: "0x0A788c9cf7B6162d117E07C022dAce327df6a238"
     mapping:
       kind: ethereum/events
@@ -25,8 +25,8 @@ dataSources:
         - SaleEvent
         - DeliveredEvent
       abis:
-        - name: Duniverse
-          file: ./abis/localhost_Duniverse.json
+        - name: Deworld
+          file: ./abis/localhost_Deworld.json
       eventHandlers:
         - event: PlanetCreated(indexed uint256,string,string,indexed address)
           handler: handlePlanetCreated
