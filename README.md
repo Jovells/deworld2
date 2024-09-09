@@ -16,8 +16,8 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 ## Contract Addresses
 
 ### Sepolia Testnet
-- **mUSDC Contract**: `0x420CD61BeeD23ef827df55edCFc1095406f4a148`
-- **DeWorld Contract**: `0x0DaeDC95e655667E9ff86998C0E0651FC3530067`
+- **mUSDC Contract**: `0x0DaeDC95e655667E9ff86998C0E0651FC3530067`
+- **DeWorld Contract**: `0x420CD61BeeD23ef827df55edCFc1095406f4a148`
 
 ### Hedera Network
 - **mUSDC Contract**: `0xe8fB78FD7C76A3e2f500d4302E8a75E6706804f8`
