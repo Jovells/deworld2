@@ -10,6 +10,8 @@ import "@nomicfoundation/hardhat-verify";
 import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 
+const rpcUrlHederatestnet = "https://testnet.hashio.io/api";
+
 // If not set, it uses ours Alchemy's default API key.
 // You can get your own at https://dashboard.alchemyapi.io
 const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
@@ -45,6 +47,11 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    rootstock: {
+      url: "https://rpc.testnet.rootstock.io/GZXzs4VVEEyuW0yzd11ERyfjMuS4L0-T",
+      accounts: [deployerPrivateKey, ...testAccounts],
+      gasPrice: 1000000000,
+    },
     // View the networks that are pre-configured.
     // If the network you are looking for is not here you can add new network settings
     hardhat: {
@@ -53,6 +60,7 @@ const config: HardhatUserConfig = {
         enabled: process.env.MAINNET_FORKING_ENABLED === "true",
       },
     },
+    
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey, ...testAccounts],
@@ -78,6 +86,8 @@ const config: HardhatUserConfig = {
       url: `https://opt-mainnet.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey, ...testAccounts],
     },
+    
+    
     optimismSepolia: {
       url: `https://opt-sepolia.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey, ...testAccounts],
@@ -130,6 +140,12 @@ const config: HardhatUserConfig = {
       url: "https://rpc.zksync.io",
       accounts: [deployerPrivateKey, ...testAccounts],
     },
+    hederatestnet: {
+      chainId: 296,
+      url: rpcUrlHederatestnet,
+      gasMultiplier: 1.1,
+      accounts: [deployerPrivateKey, ...testAccounts],
+    },
     zkSyncSepolia: {
       url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of ZKsync Era network.
       zksync: true,
@@ -140,6 +156,7 @@ const config: HardhatUserConfig = {
       accounts: [deployerPrivateKey, ...testAccounts],
     },
   },
+
   // configuration for harhdat-verify plugin
   etherscan: {
     apiKey: `${etherscanApiKey}`,
@@ -152,8 +169,18 @@ const config: HardhatUserConfig = {
           browserURL: "https://sepolia-blockscout.lisk.com",
         },
       },
+      {
+        network: "rootstock",
+        chainId: 31,
+        urls: {
+          apiURL: "https://rootstock-testnet.blockscout.com/api/",
+          browserURL: "https://rootstock-testnet.blockscout.com/",
+        }
+      },
     ],
+    
   },
+  
   // configuration for etherscan-verify from hardhat-deploy plugin
   verify: {
     etherscan: {
