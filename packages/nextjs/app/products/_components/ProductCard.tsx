@@ -8,27 +8,36 @@ import { Address } from "~~/components/scaffold-eth";
 
 const ProductCard: NextPage = ({ product }) => {
   const [ethAmount] = useState(product?.price / 10 ** 6);
+
   return (
     <>
-      <div className="bg-white w-fit sm:w-1/5 flex items-center flex-col shadow-xl rounded-xl aspect-auto">
-        <Link href={`/product-details/?id=${product?.id || "1"}`} className="w-full cursor-pointer">
-          <div className="p-5">
+      <div className="bg-white w-full sm:w-[250px] flex flex-col items-center shadow-lg hover:shadow-2xl transition-shadow duration-300 rounded-2xl overflow-hidden">
+        <Link href={`/product-details/?id=${product?.id || "1"}`} className="w-full">
+          {/* Image Section */}
+          <div className="w-full p-4 bg-gray-100 flex items-center justify-center">
             <img
               src={`https://ipfs.io/ipfs/${product?.productImage}`}
-              alt="product picture"
-              style={{ width: "200px" }}
+              alt="Product picture"
+              onError={(e) => e.currentTarget.src = "https://via.placeholder.com/300x300.png?text=" + product?.name}
+              className="rounded-lg w-[180px] h-[180px] object-cover"
             />
           </div>
-          <div className="w-full border border-black text-center rounded-br-xl rounded-bl-xl flex flex-col justify-center items-center">
-            <h1 className="text-lg uppercase font-bold">{product?.name}</h1>
-            <div className="flex justify-center items-center gap-2 p-1">
-              <div className="flex justify-start items-center gap-2 p-1 font-bold">
-                <span>$</span>
-                <span>{ethAmount}</span>
-              </div>
+          
+          {/* Product Details */}
+          <div className="w-full p-4 text-center bg-white">
+            <h1 className="text-lg font-semibold mb-2">{product?.name}</h1>
+            <div className="flex justify-center items-center gap-2 mb-2">
+              <span className="text-xl font-bold">$</span>
+              <span className="text-xl font-bold">{ethAmount}</span>
             </div>
+            <div className="text-sm text-gray-600 mb-2" >
             <Address address={product?.seller} />
-            <span>⭐⭐</span>
+            </div>
+            <div className="flex justify-center gap-1 text-yellow-500">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <span key={index}>⭐</span>
+              ))}
+            </div>
           </div>
         </Link>
       </div>

@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ProductCard from "./_components/ProductCard";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
@@ -10,24 +10,22 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { THE_GRAPH_URL } from "~~/app/constants";
 import AddProduct from "./_components/AddProduct";
 
-
-
 const Products: NextPage = () => {
-  const { writeContractAsync, isPending } = useScaffoldWriteContract("Deworld");
+  const { writeContractAsync } = useScaffoldWriteContract("Deworld");
   const { address: connectedAddress } = useAccount();
-
-  const [products, setProducts] = useState([])
+  
+  const [products, setProducts] = useState<any[]>([]);
   const [productImage, setProductImage] = useState("");
   const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState<any>(0);
-  const [productQuantity, setProductQuantity] = useState<any>(0);
-  const [planetId, setPlanetId] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false)
+  const [productPrice, setProductPrice] = useState<number>(0);
+  const [productQuantity, setProductQuantity] = useState<number>(0);
+  const [planetId, setPlanetId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const searchParams = useSearchParams() 
+  const searchParams = useSearchParams();
 
-  async function fetchGraphQL(operationsDoc: any, operationName: any, variables: any) {
-    setIsLoading(true)
+  async function fetchGraphQL(operationsDoc: string, operationName: string, variables: any) {
+    setIsLoading(true);
     const response = await fetch(THE_GRAPH_URL, {
       method: 'POST',
       headers: {
@@ -39,42 +37,44 @@ const Products: NextPage = () => {
         operationName,
       }),
     });
-    setIsLoading(false)
-  
+    setIsLoading(false);
     return await response.json();
   }
 
-  
   const operation = `
-  query MyQuery {
-    products(where: { planet: "${searchParams.get('id')}"  }) {
-      id
-      name
-      price
-      id
-      quantity
-      seller
-      productImage 
+    query MyQuery {
+      products(where: { planet: "${searchParams.get('id')}" }) {
+        id
+        name
+        price
+        quantity
+        seller
+        productImage
+      }
     }
-  }
   `;
-  
-  function fetchMyQuery() {
-    return fetchGraphQL(operation, 'MyQuery', {});
+
+  async function fetchMyQuery() {
+    const { data, errors } = await fetchGraphQL(operation, 'MyQuery', {});
+    if (errors) {
+      console.error(errors);
+      return [];
+    }
+    return data.products;
   }
 
   async function submitProduct() {
     const payload = {
-      productImage: productImage,
-      productName: productName,
-      planetId: searchParams.get('id') ?? 1,
+      productImage,
+      productName,
+      planetId: searchParams.get('id') ?? '1',
       seller: connectedAddress,
-      quantity: productQuantity as any,
-      price: productPrice as any,
+      quantity: productQuantity,
+      price: productPrice,
     };
-    if(productName && searchParams.get('id') && productImage && connectedAddress && productQuantity && productPrice) {
+
+    if (productName && searchParams.get('id') && productImage && connectedAddress && productQuantity && productPrice) {
       try {
-        console.log("Payload1", payload);
         await writeContractAsync(
           {
             functionName: "addProduct",
@@ -86,73 +86,55 @@ const Products: NextPage = () => {
             },
           },
         );
-        location.reload()
+        location.reload();
       } catch (e) {
         console.error("Error posting product", e);
       }
-    } else {
-      return
     }
   }
 
-  
   useEffect(() => {
-    // check the planet and product id
     const currentId = searchParams.get('id');
     if (currentId) {
-      setPlanetId(currentId || 1);
+      setPlanetId(currentId);
     }
-    
-    // Graphql query to fetch products per planet id
     fetchMyQuery()
-    .then(({ data, errors }) => {
-      if (errors) {
-        console.error(errors);
-      } else {
-        setProducts(data.products)
-        console.log(data?.products);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching query:', error);
-    });
-  }, [])
-
+      .then(products => setProducts(products))
+      .catch(error => console.error('Error fetching query:', error));
+  }, [searchParams]);
 
   return (
-    <>
-      <div className="flex items-center flex-col flex-grow">
-        <div className="flex-grow flex-col bg-base-300 w-full px-8 py-5 items-center justify-center gap-10">
-          <div className="flex justify-between mb-5">
-            <h1 className="text-[25px] font-bold">Products</h1>
-            {/* <button className="text-[20px] font-bold outline outline-1 p-2 rounded-lg">➕ Post</button> */}
-            <div className="absolute flex right-10 justify-between">
-              <label htmlFor="my_modal_7" className="text-[18px] font-bold outline outline-1 p-2 rounded-lg cursor-pointer">
-                ➕ Post Product
-              </label>
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-start gap-5">
-            {isLoading ? (
-                <span className="loading loading-spinner loading-sm"></span>
-              ) : products?.length ? (
-                products?.map((product: any, index: number) => <ProductCard key={index} product={product} />)
-              ) : (
-                <h2>No Products available</h2>
-              )
-            }
-          </div>
+    <div className="flex flex-col items-center flex-grow bg-gray-100 min-h-screen py-6 px-4">
+      <div className="w-full max-w-7xl bg-white p-8 rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-800">Products</h1>
+          <label 
+            htmlFor="my_modal_7" 
+            className="text-xl font-semibold bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer shadow-lg hover:bg-blue-600 transition-colors"
+          >
+            ➕ Post Product
+          </label>
         </div>
-
-        <AddProduct 
-          setProductImage={setProductImage}
-          setProductName={setProductName}
-          setProductPrice={setProductPrice}
-          setProductQuantity={setProductQuantity}
-          submitProduct={submitProduct}
-        />
+        <div className="flex flex-wrap justify-center gap-6">
+          {isLoading ? (
+            <span className="loading loading-spinner loading-lg"></span>
+          ) : products.length ? (
+            products.map((product: any, index: number) => (
+              <ProductCard key={index} product={product} />
+            ))
+          ) : (
+            <h2 className="text-xl font-semibold text-gray-600">No Products available</h2>
+          )}
+        </div>
       </div>
-    </>
+      <AddProduct 
+        setProductImage={setProductImage}
+        setProductName={setProductName}
+        setProductPrice={setProductPrice}
+        setProductQuantity={setProductQuantity}
+        submitProduct={submitProduct}
+      />
+    </div>
   );
 };
 

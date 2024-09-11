@@ -1,18 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import { THE_GRAPH_URL } from "../constants";
 import StoreCard from "./_components/StoreCard";
 import type { NextPage } from "next";
 
-// import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
-
 const Stores: NextPage = () => {
-  // const { data, isLoading } = useScaffoldReadContract({
-  //   contractName: "Deworld",
-  //   functionName: "",
-  // });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [stores, setStores] = useState<any[]>([]);
 
@@ -51,7 +45,6 @@ const Stores: NextPage = () => {
       return;
     }
 
-    console.log(data?.planets);
     setStores(data?.planets);
   }
 
@@ -64,21 +57,36 @@ const Stores: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col flex-grow">
-        <div className="flex-grow flex-col bg-base-300 w-full px-8 py-12 items-center justify-center gap-10">
-          <h1 className="flex justify-start items-center gap-2">
-            <img src="/planet.png" alt="planet" className="w-[50px] animate-bounce opacity-50"/>
-            <span className="text-[30px] font-bold">Planets</span>
+        <div className="flex-grow flex-col bg-gray-50 w-full px-8 py-12 items-center justify-center gap-10 relative">
+          {/* Title Section */}
+          <h1 className="flex justify-start items-center gap-2 mb-8">
+            <img
+              src="/planet.png"
+              alt="planet"
+              className="w-[50px] animate-bounce opacity-70"
+            />
+            <span className="text-[30px] font-bold text-gray-800">Planets</span>
           </h1>
-          <div className="flex flex-wrap justify-center items-center gap-10">
+
+          {/* Stores Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
             {isLoading ? (
-              <span className="loading loading-spinner loading-sm"></span>
+              <span className="loading loading-spinner loading-lg"></span>
             ) : stores?.length ? (
-              stores?.map((store: any, index: number) => <StoreCard key={index} planet={store} className="cursor-pointer" />)
+              stores?.map((store: any, index: number) => (
+                <StoreCard key={index} planet={store} />
+              ))
             ) : (
-              <h2>No Planets available</h2>
+              <h2 className="text-center text-xl text-gray-500">No Planets available</h2>
             )}
           </div>
-          <img src="/solar.gif" alt="planet" className="w-[300px] absolute right-10 bottom-0" />
+
+          {/* Background Decoration */}
+          <img
+            src="/solar.gif"
+            alt="solar system"
+            className="w-[300px] absolute right-10 bottom-0 opacity-70"
+          />
         </div>
       </div>
     </>
