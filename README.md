@@ -15,6 +15,8 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 
 -**Web3js**, **Ora Ai**, **TheGraph**, **Next.js**, **Hardhat**, **Solidity**, **RainbowKit**, **TypeScript**, **Wagmi**, 
 
+## Subgraph Url: https://api.studio.thegraph.com/query/74011/deworld-zksync/version/latest
+
 ## Contract Addresses
 
 ### zkSync Sepolia Testnet
@@ -27,9 +29,15 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 - **mUSDC Contract**: `0x8A3818f10A5b0270aBf6dFF9834Ab269436cA67b`
 - **DeWorld Contract**: `0xc4498e305d2eEdf2768162938814D26ad78F01D0`
 
-### Base Network
+### Base Sepolia Network
 - **mUSDC Contract**: `0x3B42D1dEF553EE484984C6c3c769BE58005f5d11`
 - **DeWorld Contract**: `0x4FA2D52E6a6947A00E258b6aDdE5B0f38f45bA3B`
+
+### Optimism Sepolia Network
+- **mUSDC Contract**: `0x13041cDFB971226Ac07c171A274cB72Ac8e209Be`
+- **DeWorld Contract**: `0x11342913a0b3814D1C39C78b3809c0b65B113eAC`
+
+
 
 ## Project URL
 
