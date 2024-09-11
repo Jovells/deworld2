@@ -5,7 +5,7 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 
 ## Key Features
 
-- **Gasless Transactions**: DeWorld uses the **zkSync Web3 plugin** for gasless transactions, improving user experience by eliminating gas fees for contract interactions. We created a custom plugin, [zkSync Web3 Contract Paymaster Plugin](https://www.npmjs.com/package/zksync-web3-contract-paymaster-plugin), extends this functionality, allowing for seamless, fee-free interactions across the platform. as the existing plugin does not provide a straightforward way to do gasless paymaster transactions.
+- **Gasless Transactions**: DeWorld uses the **zkSync Web3 plugin** for gasless transactions, improving user experience by eliminating gas fees for contract interactions. We created a custom plugin, [zkSync Web3 Contract Paymaster Plugin](https://www.npmjs.com/package/zksync-web3-contract-paymaster-plugin), extends this functionality, Allowing for seamless, fee-free interactions on the platform, As the existing Web3 plugin does not provide a straightforward way to do gasless paymaster transactions.
 - **Escrow Protection**: Funds are securely held in escrow until conditions are met, ensuring safe transactions.
 - **Decentralized Arbitration**: Independent arbitrators manage customizable marketplaces and resolve disputes based on predefined rules.
 - **Blockchain Transparency**: All transaction and dispute data are immutably recorded, enhancing transparency.
