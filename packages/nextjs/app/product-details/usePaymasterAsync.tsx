@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import Web3  from 'web3';
 import { getPaymasterParams, types, Web3ZKsyncL2, ZKsyncPlugin } from 'web3-plugin-zksync';
-import ZkSyncContractPaymasterPlugin from "./ZkSyncContractPaymasterPlugin";
+import ZkSyncContractPaymasterPlugin from "zksync-web3-contract-paymaster-plugin";
 import { MUSDC_ZKSYNC_ADDRESS } from '../constants';
-import { waitTxByHashConfirmation, waitTxByHashConfirmationFinalized } from 'web3-plugin-zksync/lib/utils';
+import { waitTxByHashConfirmation } from 'web3-plugin-zksync/lib/utils';
 import toast from 'react-hot-toast';
 
 declare let window: any;
@@ -44,7 +44,7 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
 
   const writeContractWithPaymaster = useCallback(async (
     { functionName, args }: { functionName: string; args: any[] },
-    { onBlockConfirmation }: { onBlockConfirmation?: (txnReceipt: any) => void }
+    { onBlockConfirmation, numConfirmations = 1 }: { onBlockConfirmation?: (txnReceipt: any) => void, numConfirmations?: number }
   ) => {
     if (!web3 || !account) return;
     setIsPending(true);
@@ -77,7 +77,7 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
       setIsPending(false);
 
       console.log("Waiting for transaction confirmation...");
-      const confirm = await waitTxByHashConfirmation(web3.eth, tx.hash, 2)
+      const confirm = await waitTxByHashConfirmation(web3.eth, tx.hash, numConfirmations)
       toast.dismiss(id)
       console.log("Transaction confirmed!, ", confirm);
 

@@ -3253,7 +3253,7 @@ __metadata:
     wagmi: "npm:2.10.10"
     web3: "npm:^4.12.1"
     web3-plugin-zksync: "npm:^1.0.6"
-    zksync-web3-contract-paymaster-plugin: "npm:^1.0.3"
+    zksync-web3-contract-paymaster-plugin: "npm:^1.0.6"
     zustand: "npm:~4.1.2"
   languageName: unknown
   linkType: soft
@@ -19145,14 +19145,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zksync-web3-contract-paymaster-plugin@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "zksync-web3-contract-paymaster-plugin@npm:1.0.3"
+"zksync-web3-contract-paymaster-plugin@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "zksync-web3-contract-paymaster-plugin@npm:1.0.6"
   dependencies:
     web3: "npm:^4.12.1"
     web3-plugin-zksync: "npm:^1.0.6"
     zksync-web3: "npm:^0.17.1"
-  checksum: 10/3fe4447cdabb0035d6ab7d209d163489c10ecbea1f41f411f0e31f21e4ac18469413a0f87463b8868d341c72541cd655d3c3227f7d09156f089ae6dd6e793d54
+  checksum: 10/4abfb0723a96c36cc64008da76b68b66dac0e96dee72ac4d4007eb9e2f7883ece402f51e18c4ff92f1dd79e6e2bcffc31adf1f9213c5a84b1ac4a11cc221f2bd
   languageName: node
   linkType: hard
 

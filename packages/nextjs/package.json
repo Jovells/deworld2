@@ -46,7 +46,7 @@
     "wagmi": "2.10.10",
     "web3": "^4.12.1",
     "web3-plugin-zksync": "^1.0.6",
-    "zksync-web3-contract-paymaster-plugin": "^1.0.3",
+    "zksync-web3-contract-paymaster-plugin": "^1.0.6",
     "zustand": "~4.1.2"
   },
   "devDependencies": {
