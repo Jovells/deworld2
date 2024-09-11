@@ -16,7 +16,7 @@ const ProductCard: NextPage = ({ product }) => {
           {/* Image Section */}
           <div className="w-full p-4 bg-gray-100 flex items-center justify-center">
             <img
-              src={`https://ipfs.io/ipfs/${product?.productImage}`}
+              src={product?.productImage.startsWith('https://')? product?.productImage : `https://ipfs.io/ipfs/${product?.productImage}`}
               alt="Product picture"
               onError={(e) => e.currentTarget.src = "https://via.placeholder.com/300x300.png?text=" + product?.name}
               className="rounded-lg w-[180px] h-[180px] object-cover"

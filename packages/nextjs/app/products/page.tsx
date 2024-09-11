@@ -73,6 +73,8 @@ const Products: NextPage = () => {
       price: productPrice,
     };
 
+    console.log({productName, id : searchParams.get('id'), productImage, connectedAddress, productQuantity, productPrice})
+
     if (productName && searchParams.get('id') && productImage && connectedAddress && productQuantity && productPrice) {
       try {
         await writeContractAsync(
@@ -102,6 +104,8 @@ const Products: NextPage = () => {
       .then(products => setProducts(products))
       .catch(error => console.error('Error fetching query:', error));
   }, [searchParams]);
+
+  console.log('products', products);
 
   return (
     <div className="flex flex-col items-center flex-grow bg-gray-100 min-h-screen py-6 px-4">

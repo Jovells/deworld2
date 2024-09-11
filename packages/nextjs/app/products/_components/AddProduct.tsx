@@ -39,6 +39,8 @@ const AddProduct: NextPage<AddProductProps> = ({
 
     try {
       const estimatedFee = await web3.ora.estimateFee(Models.STABLE_DIFFUSION);
+      console.log("Estimated fee:", estimatedFee);
+      console.log('Models:', Models, "prompt", prompt, "accout", wallet[0].address, "estimatedFee", estimatedFee);
       await web3.ora.calculateAIResult(wallet[0].address, Models.STABLE_DIFFUSION, prompt, estimatedFee);
 
       console.log("Oracle is generating result...");
@@ -56,6 +58,7 @@ const AddProduct: NextPage<AddProductProps> = ({
       }
     } catch (err) {
       console.error("Error generating image:", err);
+      setProductImage(prompt);
       setError("Failed to generate image. Please try again.");
     } finally {
       setLoading(false);
@@ -76,10 +79,11 @@ const AddProduct: NextPage<AddProductProps> = ({
 
   const handleSubmission = (e: React.FormEvent) => {
     e.preventDefault();
-    if (imageResult) {
+    if (prompt) {
+      console.log("Submitting product...");
       submitProduct();
     } else {
-      setError("Please generate an image before submitting.");
+      setError("Please generate an image before submitting. If it doesnt work, provide an image link ");
     }
   };
 
@@ -136,7 +140,7 @@ const AddProduct: NextPage<AddProductProps> = ({
               <input onChange={handleQuantityChange} type="number" className="outline outline-1 w-1/2 p-2 rounded-xl" />
             </p>
 
-            <button disabled={!imageResult} type="submit" className="btn w-[100px] bg-base-300 place-self-end">
+            <button  type="submit" className="btn w-[100px] bg-base-300 place-self-end">
               Post!
             </button>
           </form>

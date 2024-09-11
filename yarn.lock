@@ -2702,14 +2702,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ora-io/web3-plugin-ora@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@ora-io/web3-plugin-ora@npm:0.0.6"
+"@ora-io/web3-plugin-ora@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "@ora-io/web3-plugin-ora@npm:0.0.7"
   dependencies:
     dotenv: "npm:^16.4.5"
   peerDependencies:
     web3: ">= 4.0.3"
-  checksum: 10/4d8baf50980146c07706ce96deb29a20e911e74d12f995bcd3c976c634f382b3617c97aa630fa559cf76222727d16a8e4b951093e633d5d9fedcef182ebf491b
+  checksum: 10/d0ad30ac3f6eb0e4adfd9f1c1ff2fe8bb724ad6528959fd3168e4d1cd9ecf8ecd90f0a921d3dad1d880ab95757c0b2d840fb9ed21085e370b2438bec71856617
   languageName: node
   linkType: hard
 
@@ -3210,7 +3210,7 @@ __metadata:
     "@circles-sdk/sdk": "npm:0.7.1"
     "@ethsign/sp-sdk": "npm:^0.7.3"
     "@heroicons/react": "npm:~2.0.11"
-    "@ora-io/web3-plugin-ora": "npm:^0.0.6"
+    "@ora-io/web3-plugin-ora": "npm:^0.0.7"
     "@rainbow-me/rainbowkit": "npm:2.1.2"
     "@tanstack/react-query": "npm:~5.28.6"
     "@trivago/prettier-plugin-sort-imports": "npm:~4.1.1"
