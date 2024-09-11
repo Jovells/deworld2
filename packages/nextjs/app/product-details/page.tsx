@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { DEWORLD_ZKSYNC_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
+import { useAccount, useBalance, useChainId } from "wagmi";
+import { DEWORLD_ZKSYNC_ADDRESS, THE_GRAPH_URL, ZKSYNC_MUSDT_PAYMASTER_ADDRESS } from "~~/app/constants";
 import { Address, EtherInput } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
-import { useScaffoldContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldContract, useScaffoldReadContract, useScaffoldWriteContract, useWatchBalance } from "~~/hooks/scaffold-eth";
 import usePaymasterAsync from "./usePaymasterAsync";
+import { formatEther, formatUnits } from "viem";
 
 /* eslint-disable @next/next/no-img-element */
 const ProductDetails: NextPage = () => {
@@ -16,14 +17,21 @@ const ProductDetails: NextPage = () => {
   const { writeContractAsync: writeMockUSDTAsync, isPending: approvalPending } = useScaffoldWriteContract("MockUSDT");
   const { writeContractWithPaymaster: buywithPaymasterAsync, 
     isPending: isPaymasterPending } = usePaymasterAsync(DEWORLD_ZKSYNC_ADDRESS, deployedContracts[300].Deworld.abi as any,
-        "0xd851E8cDca408A80691255F823F76C057b08ccCc");
-  const [productId, setProductId] = useState<any>(null);
-  const [product, setProduct] = useState({});
-  const [itemQty, setItemQty] = useState<any>(1);
-  const [isPending, setIsPending] = useState<any>(pending);
-  const [isApprovalPending, setIsApprovalPending] = useState<any>(approvalPending);
-  const [ethAmount, setEthAmount] = useState<number | null>(null);
-  const { address } = useAccount();
+      ZKSYNC_MUSDT_PAYMASTER_ADDRESS);
+      const [productId, setProductId] = useState<any>(null);
+      const [product, setProduct] = useState({});
+      const [itemQty, setItemQty] = useState<any>(1);
+      const [isPending, setIsPending] = useState<any>(pending);
+      const [isApprovalPending, setIsApprovalPending] = useState<any>(approvalPending);
+      const [ethAmount, setEthAmount] = useState<number | null>(null);
+      const { address } = useAccount();
+      const { data: mockUSDTBalance} = useScaffoldReadContract({
+        contractName: "MockUSDT",
+        functionName: "balanceOf",
+        args: [address],
+      });
+      const chain = useChainId();
+      const {data: ethBalance} = useWatchBalance({address: address, chainId: chain});
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -145,58 +153,120 @@ const ProductDetails: NextPage = () => {
     setEthAmount((product.price / 10 ** 6) * itemQty);
   }, [itemQty]);
 
+  //implement the togglePayWithEth function
+  const [payWithEth, setPayWithEth] = useState<boolean>(true);
+  const togglePayWithEth = () => {
+    setPayWithEth(!payWithEth);
+  };
+
   return (
     <>
-      <div className="p-5">
-        <h1 className="w-100 font-bold text-xl">Product Details</h1>
-
-        <div className="flex flex-wrap justify-center items-center gap-5">
-          <img src={`https://ipfs.io/ipfs/${product?.productImage}`} alt="" className="w-1/4" />
-          <div className="w-full sm:w-1/2 flex flex-col justify-start gap-2">
-            <h1 className="text-2xl sm:text-3xl font-bold">{product?.name}</h1>
-            <div className="flex justify-start items-center gap-2 p-1 font-bold">
-              <span>$</span>
-              <span>{ethAmount}</span>
+    <div className="p-5">
+      <h1 className="w-full font-bold text-xl mb-4">Product Details</h1>
+  
+      <div className="flex flex-wrap justify-center items-start gap-8">
+        {/* Product Image */}
+        <img src={`https://ipfs.io/ipfs/${product?.productImage}`}
+         alt="Product"
+          className="w-full sm:w-1/3 object-cover" 
+          onError={(e) => e.currentTarget.src = "https://via.placeholder.com/300x300.png?text=" + product?.name}
+          />
+  
+        {/* Product Information */}
+        <div className="w-full sm:w-1/2 flex flex-col justify-start gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold">{product?.name}</h1>
+  
+          <div className="flex items-center gap-2 p-1 text-xl font-bold">
+            <span>$</span>
+            <span>{ethAmount}</span>
+          </div>
+  
+          <h2 className="text-lg">
+            <b>{product?.quantity}</b> Qty available
+          </h2>
+  
+          <Address address={product?.seller} />
+  
+          <div className="text-yellow-500">⭐⭐</div>
+  
+          {/* Product Description */}
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio quae deserunt maxime asperiores voluptatem exercitationem molestias
+            impedit vitae dignissimos repellat vel, in provident hic aperiam. Deserunt nam sit ullam incidunt!
+          </p>
+  
+          {/* Quantity and Buy Button */}
+          <div className="flex justify-start items-center gap-5">
+            <input
+              type="number"
+              name="qty"
+              id="qty"
+              min={1}
+              value={itemQty}
+              onChange={e => setItemQty(e.target.value)}
+              className="w-full sm:w-1/2 p-2 border border-gray-300 rounded-lg"
+            />
+            <button
+              className="bg-blue-500 text-white p-2 rounded-lg w-full sm:w-1/2 flex justify-center items-center"
+              onClick={payWithEth ? buyProduct : buyProductWithPayMaster}
+              disabled={itemQty < 1 || isPending}
+            >
+              {isPending || isPaymasterPending ? (
+                <span className="loading loading-spinner loading-sm"></span>
+              ) : (
+                "Buy"
+              )}
+            </button>
+          </div>
+  
+          {/* Payment Method Toggle */}
+          <div className="flex flex-col gap-4 mt-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold">Pay gas fees with:</h3>
+              <div className="flex items-center">
+                <span className="mr-4">USDT</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
+                    checked={payWithEth}
+                    onChange={togglePayWithEth}
+                    disabled={isPending || isPaymasterPending}
+                  />
+                  <div className="w-10 h-5 bg-blue-600 rounded-full peer peer-checked:bg-gray-200 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+                </label>
+                <span className="ml-4">ETH</span>
+              </div>
             </div>
-            <h2>
-              <b>{product?.quantity}</b> Qty available
-            </h2>
-            <Address address={product?.seller} />
-            <span>⭐⭐</span>
-            <span className="w-fit">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio quae deserunt maxime asperiores
-              voluptatem exercitationem molestias impedit vitae dignissimos repellat vel, in provident hic aperiam.
-              Deserunt nam sit ullam incidunt!
-            </span>
-            <div className="flex justify-start items-center gap-5">
-              <input
-                type="number"
-                name="qty"
-                id="qty"
-                min={1}
-                value={itemQty}
-                onChange={e => setItemQty(e.target.value)}
-                className="w-full sm:w-1/2 p-2 outline outline-2"
-              />
-              <button
-                className="bg-blue-300 p-2 rounded-lg w-full sm:w-1/2"
-                onClick={buyProduct}
-                disabled={itemQty < 1 || isPending}
-              >
-                {isPending ? <span className="loading loading-spinner loading-sm"></span> : "Buy"}
-              </button>
-              <button
-                className="bg-blue-300 p-2 rounded-lg w-full sm:w-1/2"
-                onClick={buyProductWithPayMaster}
-                disabled={itemQty < 1 || isPending}
-              >
-                {isPaymasterPending ? <span className="loading loading-spinner loading-sm"></span> : "BuyWithPayMaster"}
-              </button>
+  
+            {/* USDT and ETH Balance */}
+            <div className="flex justify-between">
+              <div>
+                <h3 className="text-sm font-semibold mb-1">USDT Balance:</h3>
+                <span>{mockUSDTBalance && formatUnits(mockUSDTBalance, 6)}</span>
+                         {/* Mint USDT Link */}
+          <a
+            href="https://sepolia.explorer.zksync.io/address/0xff68f7561562C1F24A317d939B46741F76c4Ef55#contract:~:text=1.%20approve-,2.%20mint,-Connect%20Wallet%20to"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-100 text-center p-2 rounded-lg w-full sm:w-1/2 mt-4"
+          >
+            Mint some USDT
+          </a>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold mb-1">ETH Balance:</h3>
+                <span>{ethBalance && formatEther(ethBalance?.value)}</span>
+              </div>
             </div>
           </div>
+  
+ 
         </div>
       </div>
-    </>
+    </div>
+  </>
+  
   );
 };
 

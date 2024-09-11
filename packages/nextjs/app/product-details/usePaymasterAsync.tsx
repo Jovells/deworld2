@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Web3  from 'web3';
 import { getPaymasterParams, types, Web3ZKsyncL2, ZKsyncPlugin } from 'web3-plugin-zksync';
 import ZkSyncContractPaymasterPlugin from "./ZkSyncContractPaymasterPlugin";
+import { MUSDC_ZKSYNC_ADDRESS } from '../constants';
 
 declare let window: any;
 
@@ -18,9 +19,9 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
       if (typeof window.ethereum !== 'undefined') {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const web3 = new Web3(window.ethereum);
-        // const l2= Web3ZKsyncL2.initWithDefaultProvider(types.Network.Sepolia)
+        const l2= Web3ZKsyncL2.initWithDefaultProvider(types.Network.Sepolia)
         web3.registerPlugin(new ZkSyncContractPaymasterPlugin(window.ethereum));
-        // web3.registerPlugin(new ZKsyncPlugin(l2))
+        web3.registerPlugin(new ZKsyncPlugin(l2))
 
         if(!paymaster){
           setPaymaster(await web3.ZKsync.rpc.getTestnetPaymasterAddress() as string)
@@ -60,7 +61,9 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
           customData: {
             gasPerPubdata: 50000,
             paymasterParams: getPaymasterParams(paymaster as string, {
-              type: "General",
+              type: "ApprovalBased",
+              minimalAllowance: 1,
+              token: MUSDC_ZKSYNC_ADDRESS,
               innerInput: new Uint8Array(),
             }),
           }

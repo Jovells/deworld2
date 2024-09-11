@@ -14,6 +14,7 @@ const BuyerDashboard: NextPage = () => {
   const [itemQty, setItemQty] = useState<any>(1);
   const [isPending, setIsPending] = useState<any>(pending);
   const [isPendingRelease, setIsPendingRelease] = useState<any>(pending);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [pendingSales, setPendingSales] = useState([]);
   const [completedSales, setCompletedSales] = useState([]);
@@ -110,6 +111,7 @@ const BuyerDashboard: NextPage = () => {
     if (currentId) {
       setProductId(currentId || 1);
     }
+    setIsLoading(true);
 
     fetchMyQuery()
       .then(({ data, errors }) => {
@@ -128,7 +130,9 @@ const BuyerDashboard: NextPage = () => {
       })
       .catch(error => {
         console.error("Error fetching query:", error);
-      });
+      }).finally(
+        () => setIsLoading(false)
+      );
   }, []);
 
   return (
@@ -147,6 +151,7 @@ const BuyerDashboard: NextPage = () => {
               </tr>
             </thead>
             <tbody>
+            {!isLoading?<>
               {pendingSales?.map((purchase, index) => (
                 <tr className="border-b" key={index}>
                   <td className="p-3">
@@ -177,7 +182,9 @@ const BuyerDashboard: NextPage = () => {
                     </div>
                   </td>
                 </tr>
-              ))}
+              ))}</>:
+              <Spinner/>
+            }
             </tbody>
           </table>
 
@@ -213,3 +220,12 @@ const BuyerDashboard: NextPage = () => {
 };
 
 export default BuyerDashboard;
+
+// implement Spinner component
+const Spinner = () => {
+  return (
+    <div className="flex justify-center items-center">
+      <div className="loading loading-spinner loading-lg"></div>
+    </div>
+  );
+};
