@@ -140,7 +140,7 @@ const BuyerDashboard: NextPage = () => {
       <div className="p-5 sm:px-10">
         <h1 className="w-full font-bold text-2xl underline mb-4">Dashboard</h1>
         <div className="p-5">
-          <h2 className="text-xl font-bold mb-3">Pending Sales</h2>
+          <h2 className="text-xl font-bold mb-3">Pending Buys</h2>
           <table className="mb-10 w-full border border-gray-300 rounded-lg">
             <thead>
               <tr className="bg-gray-200">

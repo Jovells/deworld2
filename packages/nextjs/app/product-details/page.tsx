@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount, useBalance, useChainId } from "wagmi";
-import { DEWORLD_ZKSYNC_ADDRESS, THE_GRAPH_URL, ZKSYNC_MUSDT_PAYMASTER_ADDRESS } from "~~/app/constants";
+import { DEWORLD_ZKSYNC_ADDRESS, MUSDC_ZKSYNC_ADDRESS, THE_GRAPH_URL, ZKSYNC_MUSDT_PAYMASTER_ADDRESS } from "~~/app/constants";
 import { Address, EtherInput } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { useScaffoldContract, useScaffoldReadContract, useScaffoldWriteContract, useWatchBalance } from "~~/hooks/scaffold-eth";
 import usePaymasterAsync from "./usePaymasterAsync";
 import { formatEther, formatUnits } from "viem";
+import toast from "react-hot-toast";
 
 /* eslint-disable @next/next/no-img-element */
 const ProductDetails: NextPage = () => {
@@ -17,6 +18,9 @@ const ProductDetails: NextPage = () => {
   const { writeContractAsync: writeMockUSDTAsync, isPending: approvalPending } = useScaffoldWriteContract("MockUSDT");
   const { writeContractWithPaymaster: buywithPaymasterAsync, 
     isPending: isPaymasterPending } = usePaymasterAsync(DEWORLD_ZKSYNC_ADDRESS, deployedContracts[300].Deworld.abi as any,
+      ZKSYNC_MUSDT_PAYMASTER_ADDRESS);
+  const { writeContractWithPaymaster: approveWithPaymasterAsync, 
+    isPending: isPaymasterAprovalPending } = usePaymasterAsync(MUSDC_ZKSYNC_ADDRESS, deployedContracts[300].MockUSDT.abi as any,
       ZKSYNC_MUSDT_PAYMASTER_ADDRESS);
       const [productId, setProductId] = useState<any>(null);
       const [product, setProduct] = useState({});
@@ -105,6 +109,18 @@ const ProductDetails: NextPage = () => {
   const buyProductWithPayMaster = async () => {
     console.log("argsProduct", productId, itemQty);
     try {
+      await approveWithPaymasterAsync(
+        {
+          functionName: "approve",
+          args: [DEWORLD_ZKSYNC_ADDRESS, product?.price],
+        },
+        {
+          onBlockConfirmation: txnReceipt => {
+            console.log("📦 Approval Transaction blockHash", txnReceipt.hash);
+          },
+        },
+      );
+
       await buywithPaymasterAsync(
         {
           functionName: "purchaseProduct",
@@ -113,6 +129,7 @@ const ProductDetails: NextPage = () => {
         {
           onBlockConfirmation: txnReceipt => {
             console.log("📦 Transaction hash", txnReceipt.hash);
+            toast.success("Purchase  successful");
           },
         },
       );
@@ -166,7 +183,8 @@ const ProductDetails: NextPage = () => {
   
       <div className="flex flex-wrap justify-center items-start gap-8">
         {/* Product Image */}
-        <img src={`https://ipfs.io/ipfs/${product?.productImage}`}
+        <img 
+        src={product?.productImage?.startsWith('https://')? product?.productImage : `https://ipfs.io/ipfs/${product?.productImage}`}
          alt="Product"
           className="w-full sm:w-1/3 object-cover" 
           onError={(e) => e.currentTarget.src = "https://via.placeholder.com/300x300.png?text=" + product?.name}

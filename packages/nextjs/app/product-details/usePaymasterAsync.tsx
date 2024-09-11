@@ -3,6 +3,8 @@ import Web3  from 'web3';
 import { getPaymasterParams, types, Web3ZKsyncL2, ZKsyncPlugin } from 'web3-plugin-zksync';
 import ZkSyncContractPaymasterPlugin from "./ZkSyncContractPaymasterPlugin";
 import { MUSDC_ZKSYNC_ADDRESS } from '../constants';
+import { waitTxByHashConfirmation, waitTxByHashConfirmationFinalized } from 'web3-plugin-zksync/lib/utils';
+import toast from 'react-hot-toast';
 
 declare let window: any;
 
@@ -51,6 +53,7 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
 
     try {
       // @ts-ignore
+      const id = toast.loading("calling " + functionName);
       const tx = await web3.zkSyncContractPaymasterPlugin.write(
         contractAddress,
         contractAbi,
@@ -62,7 +65,7 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
             gasPerPubdata: 50000,
             paymasterParams: getPaymasterParams(paymaster as string, {
               type: "ApprovalBased",
-              minimalAllowance: 1,
+              minimalAllowance: 10,
               token: MUSDC_ZKSYNC_ADDRESS,
               innerInput: new Uint8Array(),
             }),
@@ -73,12 +76,19 @@ const usePaymasterAsync = (contractAddress: string, contractAbi: any[], _paymast
       console.log('Transaction receipt:', tx);
       setIsPending(false);
 
+      console.log("Waiting for transaction confirmation...");
+      const confirm = await waitTxByHashConfirmation(web3.eth, tx.hash, 2)
+      toast.dismiss(id)
+      console.log("Transaction confirmed!, ", confirm);
+
+
       if (onBlockConfirmation) {
         onBlockConfirmation(tx);
       }
 
       return tx;
-    } catch (error) {
+    } catch (error: any) {
+      toast.error("Error writing to contract: " + error.message);
       setIsPending(false);
       console.error('Error writing to contract:', error);
       throw error;
