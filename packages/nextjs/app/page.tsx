@@ -14,7 +14,7 @@ const Home: NextPage = () => {
           <div className="container mx-auto flex flex-col items-center text-center px-5">
             <h1 className="text-6xl font-bold mb-4 font-mono">Welcome to DeWorld</h1>
             <p className="text-xl mb-6 max-w-2xl font-mono">
-              Experience secure, transparent, and decentralized transactions with gasless interactions powered by zkSync.
+              Experience secure, transparent, and decentralized transactions with usdt sspondsored interactions powered by zkSync and web3js.
               Safeguard your transactions with escrow protection and decentralized arbitration for all your online marketplace needs.
             </p>
             <span className="text-3xl font-semibold mb-8 font-mono">
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
               <div className="bg-gray-100 p-8 rounded-lg shadow-lg font-mono">
                 <WalletIcon className="h-12 w-12 mx-auto text-blue-600 mb-4" />
-                <h3 className="text-2xl font-semibold mb-3 font-mono">Gasless Transactions</h3>
+                <h3 className="text-2xl font-semibold mb-3 font-mono">Paymaster Sponsored Transactions with ZkSync Web3 Plugin</h3>
                 <p>Experience seamless, fee-free transactions with our zkSync integration, eliminating the need for gas fees.</p>
               </div>
               <div className="bg-gray-100 p-8 rounded-lg shadow-lg font-mono">
