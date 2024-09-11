@@ -24,12 +24,12 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 
 
 ### Lisk Network
-- **mUSDC Contract**: `0xe8fB78FD7C76A3e2f500d4302E8a75E6706804f8`
-- **DeWorld Contract**: `0x8750753695D7F994eF159Cc52B49f0930374D4CE`
+- **mUSDC Contract**: `0x8A3818f10A5b0270aBf6dFF9834Ab269436cA67b`
+- **DeWorld Contract**: `0xc4498e305d2eEdf2768162938814D26ad78F01D0`
 
 ### Base Network
-- **mUSDC Contract**: `0xE7c86A836560f49f07F00674fF3c834aac3584D2`
-- **DeWorld Contract**: `0x8750753695D7F994eF159Cc52B49f0930374D4CE`
+- **mUSDC Contract**: `0x3B42D1dEF553EE484984C6c3c769BE58005f5d11`
+- **DeWorld Contract**: `0x4FA2D52E6a6947A00E258b6aDdE5B0f38f45bA3B`
 
 ## Project URL
 
