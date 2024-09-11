@@ -146,7 +146,7 @@ export const Header = () => {
             <Image width={200} height={200} alt="SE2 logo" className="w-[200px] cursor-pointer" src="/logo.jpeg" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">DWORLD</span>
+            <span className="font-bold leading-tight">DEWORLD</span>
             <span className="text-xs">Decentralized Escrow</span>
           </div>
         </Link>

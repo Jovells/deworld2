@@ -40,7 +40,7 @@ const BuyerDashboard: NextPage = () => {
 
   const operation = `
     query MyQuery {
-      purchases(where: {buyer: "0x00a0e8ee15281e0fffb7863cc2bd89397483366d"}) {
+      purchases(where: {buyer: "${buyerAddress}"}) {
         id
         isDelivered
         isRefunded

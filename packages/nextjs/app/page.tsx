@@ -52,10 +52,10 @@ const Home: NextPage = () => {
               <ShoppingCartIcon className="h-8 w-8 fill-secondary" />
               <p className="flex flex-col">
                 <span>Shop right away</span>
-                <span>Explore our wide range of stores and products</span>
+                <span>{"Explore planets(stores?😌)"}</span>
               </p>
               <Link href={"/stores"} className="btn btn-outline btn-primary">
-                Explore Store
+                {"Explore Planets(stores?😌)"}
               </Link>
             </div>
           </div>

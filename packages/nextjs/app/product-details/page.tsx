@@ -110,7 +110,7 @@ const ProductDetails: NextPage = () => {
       );
 
  
-      // router?.push(`/buyer-dashboard/?id=${address}`);
+      router?.push(`/buyer-dashboard/?id=${address}`);
     } catch (e) {
       setIsPending(false);
       console.error("Error buying product", e);
