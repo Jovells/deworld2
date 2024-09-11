@@ -239,10 +239,10 @@ const ProductDetails: NextPage = () => {
   
           {/* Payment Method Toggle */}
           <div className="flex flex-col gap-4 mt-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold">Pay gas fees with:</h3>
+            <div className="flex flex-col items-center ">
+              <h3 className=" font-semibold">Pay gas fees with:</h3>
               <div className="flex items-center">
-                <span className="mr-4">USDT</span>
+                <span className="m-4">USDT</span>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
                     type="checkbox"
