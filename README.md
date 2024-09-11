@@ -20,6 +20,8 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 ### zkSync Sepolia Testnet
 - **mUSDC Contract**: `0x0DaeDC95e655667E9ff86998C0E0651FC3530067`
 - **DeWorld Contract**: `0xff68f7561562C1F24A317d939B46741F76c4Ef55`
+- **Paymaster Contract**: `0xff68f7561562C1F24A317d939B46741F76c4Ef55`
+
 
 ### Lisk Network
 - **mUSDC Contract**: `0xe8fB78FD7C76A3e2f500d4302E8a75E6706804f8`
