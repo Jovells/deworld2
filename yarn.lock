@@ -26,43 +26,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^3.11.5":
-  version: 3.11.5
-  resolution: "@apollo/client@npm:3.11.5"
-  dependencies:
-    "@graphql-typed-document-node/core": "npm:^3.1.1"
-    "@wry/caches": "npm:^1.0.0"
-    "@wry/equality": "npm:^0.5.6"
-    "@wry/trie": "npm:^0.5.0"
-    graphql-tag: "npm:^2.12.6"
-    hoist-non-react-statics: "npm:^3.3.2"
-    optimism: "npm:^0.18.0"
-    prop-types: "npm:^15.7.2"
-    rehackt: "npm:^0.1.0"
-    response-iterator: "npm:^0.2.6"
-    symbol-observable: "npm:^4.0.0"
-    ts-invariant: "npm:^0.10.3"
-    tslib: "npm:^2.3.0"
-    zen-observable-ts: "npm:^1.2.5"
-  peerDependencies:
-    graphql: ^15.0.0 || ^16.0.0
-    graphql-ws: ^5.5.5
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0
-    subscriptions-transport-ws: ^0.9.0 || ^0.11.0
-  peerDependenciesMeta:
-    graphql-ws:
-      optional: true
-    react:
-      optional: true
-    react-dom:
-      optional: true
-    subscriptions-transport-ws:
-      optional: true
-  checksum: 10/c7dcb362ff68c3e063cf00a1d1d0647ea47f8b941e6b74291fc3be5957a9d4f6a6e2b0fb511f3f24685ebf8a895f9137134e5a4593d1d0b7ef2dd354d1d6edb0
-  languageName: node
-  linkType: hard
-
 "@apollo/client@npm:~3.9.4":
   version: 3.9.11
   resolution: "@apollo/client@npm:3.9.11"
@@ -1124,6 +1087,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ethsign/sp-sdk@npm:^0.7.3":
+  version: 0.7.3
+  resolution: "@ethsign/sp-sdk@npm:0.7.3"
+  dependencies:
+    ethers: "npm:^6.10.0"
+    query-string: "npm:^9.0.0"
+    tslib: "npm:^2.6.2"
+  peerDependencies:
+    viem: ">=2.0.0"
+  checksum: 10/835f4a236eed59e1adf65b7fa4ecc2bfcaf5dfecf47216b737a429f9385b353b722ce1c7f842b411128104da7e46b5010a4a453c4aa65a9b1191d4ff636ac219
+  languageName: node
+  linkType: hard
+
 "@fastify/busboy@npm:^2.0.0":
   version: 2.1.1
   resolution: "@fastify/busboy@npm:2.1.1"
@@ -1587,6 +1563,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@matterlabs/hardhat-zksync-solc@npm:0.3.17":
+  version: 0.3.17
+  resolution: "@matterlabs/hardhat-zksync-solc@npm:0.3.17"
+  dependencies:
+    "@nomiclabs/hardhat-docker": "npm:^2.0.0"
+    chalk: "npm:4.1.2"
+    dockerode: "npm:^3.3.4"
+  peerDependencies:
+    hardhat: ^2.14.0
+  checksum: 10/f560c5bf96a1690ba963e87afe72ef58900dffc6be31ad87a09b6c2fc20de708f9e9a971d8418044bb7602ee84fe07a5016ac2c67dca6fe32c292a202277a45c
+  languageName: node
+  linkType: hard
+
 "@matterlabs/hardhat-zksync-solc@npm:^1.2.0, @matterlabs/hardhat-zksync-solc@npm:^1.2.3":
   version: 1.2.3
   resolution: "@matterlabs/hardhat-zksync-solc@npm:1.2.3"
@@ -1605,6 +1594,20 @@ __metadata:
   peerDependencies:
     hardhat: ^2.22.5
   checksum: 10/87118d46702887725cc190368053b64813b5807162ff8fa8fc69925d2d0ef8043d178debb2413524d6edeaef686ab10b6c89e77a1e25603dd7a8da69b2eed355
+  languageName: node
+  linkType: hard
+
+"@matterlabs/hardhat-zksync-verify@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "@matterlabs/hardhat-zksync-verify@npm:0.1.8"
+  dependencies:
+    "@matterlabs/hardhat-zksync-solc": "npm:0.3.17"
+    axios: "npm:^1.4.0"
+    chalk: "npm:4.1.2"
+    dockerode: "npm:^3.3.4"
+  peerDependencies:
+    "@nomiclabs/hardhat-etherscan": ^3.1.2
+  checksum: 10/8cd2b9dee9f70746f9264b582843dba562fc7453f368b2a6f0f934dda4691d618b79e085016ec3c7d3f9165228264f65c8874cd73c0f1a392e0aae14ab427d28
   languageName: node
   linkType: hard
 
@@ -2048,6 +2051,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/curves@npm:^1.4.0":
+  version: 1.6.0
+  resolution: "@noble/curves@npm:1.6.0"
+  dependencies:
+    "@noble/hashes": "npm:1.5.0"
+  checksum: 10/9090b5a020b7e38c7b6d21506afaacd0c7557129d716a174334c1efc36385bf3ca6de16a543c216db58055e019c6a6c3bea8d9c0b79386e6bacff5c4c6b438a9
+  languageName: node
+  linkType: hard
+
 "@noble/hashes@npm:1.2.0, @noble/hashes@npm:~1.2.0":
   version: 1.2.0
   resolution: "@noble/hashes@npm:1.2.0"
@@ -2066,6 +2078,13 @@ __metadata:
   version: 1.4.0
   resolution: "@noble/hashes@npm:1.4.0"
   checksum: 10/e156e65794c473794c52fa9d06baf1eb20903d0d96719530f523cc4450f6c721a957c544796e6efd0197b2296e7cd70efeb312f861465e17940a3e3c7e0febc6
+  languageName: node
+  linkType: hard
+
+"@noble/hashes@npm:1.5.0, @noble/hashes@npm:~1.5.0":
+  version: 1.5.0
+  resolution: "@noble/hashes@npm:1.5.0"
+  checksum: 10/da7fc7af52af7afcf59810a7eea6155075464ff462ffda2572dc6d57d53e2669b1ea2ec774e814f6273f1697e567f28d36823776c9bf7068cba2a2855140f26e
   languageName: node
   linkType: hard
 
@@ -2528,7 +2547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomiclabs/hardhat-docker@npm:^2.0.2":
+"@nomiclabs/hardhat-docker@npm:^2.0.0, @nomiclabs/hardhat-docker@npm:^2.0.2":
   version: 2.0.2
   resolution: "@nomiclabs/hardhat-docker@npm:2.0.2"
   dependencies:
@@ -2536,6 +2555,26 @@ __metadata:
     fs-extra: "npm:^7.0.1"
     node-fetch: "npm:^2.6.0"
   checksum: 10/2b6601a7bcac115a24dc4d2ce35b76b1748ffaebd723afad17e8f506231e1d6c7e5c9df73b29d429c5eb01cb0e11ff92f10c746ca31343b0fd3ddc449c9ec8f3
+  languageName: node
+  linkType: hard
+
+"@nomiclabs/hardhat-etherscan@npm:^3.1.8":
+  version: 3.1.8
+  resolution: "@nomiclabs/hardhat-etherscan@npm:3.1.8"
+  dependencies:
+    "@ethersproject/abi": "npm:^5.1.2"
+    "@ethersproject/address": "npm:^5.0.2"
+    cbor: "npm:^8.1.0"
+    chalk: "npm:^2.4.2"
+    debug: "npm:^4.1.1"
+    fs-extra: "npm:^7.0.1"
+    lodash: "npm:^4.17.11"
+    semver: "npm:^6.3.0"
+    table: "npm:^6.8.0"
+    undici: "npm:^5.14.0"
+  peerDependencies:
+    hardhat: ^2.0.4
+  checksum: 10/0f855f8418c4c8d2439c46b4a4789f131285356978d60579d57e6893441ebdbc1f2977c422c03be6a39b4d56b907086771fcafe8add012bbf1f0dd4e2abff946
   languageName: node
   linkType: hard
 
@@ -3032,6 +3071,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@scure/base@npm:~1.1.8":
+  version: 1.1.8
+  resolution: "@scure/base@npm:1.1.8"
+  checksum: 10/5b764c0e98610bc4993479965db718457d91b68d3c6f1339e3cc74e53fc6b0ae0428d1d64d29a0de0cee9d966034674d4464fdbd2d1dbef27013927b2fe05c45
+  languageName: node
+  linkType: hard
+
 "@scure/bip32@npm:1.1.5":
   version: 1.1.5
   resolution: "@scure/bip32@npm:1.1.5"
@@ -3095,6 +3141,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@scure/bip39@npm:1.4.0":
+  version: 1.4.0
+  resolution: "@scure/bip39@npm:1.4.0"
+  dependencies:
+    "@noble/hashes": "npm:~1.5.0"
+    "@scure/base": "npm:~1.1.8"
+  checksum: 10/f86e0e79768c95bc684ed6de92892b1a6f228db0f8fab836f091c0ec0f6d1e291b8c4391cfbeaa9ea83f41045613535b1940cd10e7d780a5b73db163b1e7f151
+  languageName: node
+  linkType: hard
+
 "@se-2/hardhat@workspace:packages/hardhat":
   version: 0.0.0-use.local
   resolution: "@se-2/hardhat@workspace:packages/hardhat"
@@ -3103,10 +3159,12 @@ __metadata:
     "@ethersproject/providers": "npm:~5.7.1"
     "@matterlabs/hardhat-zksync-deploy": "npm:^1.5.0"
     "@matterlabs/hardhat-zksync-solc": "npm:^1.2.3"
+    "@matterlabs/hardhat-zksync-verify": "npm:^0.1.8"
     "@nomicfoundation/hardhat-chai-matchers": "npm:~2.0.3"
     "@nomicfoundation/hardhat-ethers": "npm:~3.0.5"
     "@nomicfoundation/hardhat-network-helpers": "npm:~1.0.6"
     "@nomicfoundation/hardhat-verify": "npm:~2.0.3"
+    "@nomiclabs/hardhat-etherscan": "npm:^3.1.8"
     "@openzeppelin/contracts": "npm:~4.8.1"
     "@typechain/ethers-v5": "npm:~10.1.0"
     "@typechain/ethers-v6": "npm:~0.5.1"
@@ -3136,6 +3194,7 @@ __metadata:
     typescript: "npm:~5.1.6"
     web3: "npm:^4.12.1"
     web3-plugin-zksync: "npm:^1.0.6"
+    zksync-ethers: "npm:^6.8.0"
     zksync-web3: "npm:^0.17.1"
   languageName: unknown
   linkType: soft
@@ -3149,7 +3208,9 @@ __metadata:
     "@circles-sdk/data": "npm:0.7.1"
     "@circles-sdk/profiles": "npm:0.7.1"
     "@circles-sdk/sdk": "npm:0.7.1"
+    "@ethsign/sp-sdk": "npm:^0.7.3"
     "@heroicons/react": "npm:~2.0.11"
+    "@ora-io/web3-plugin-ora": "npm:^0.0.6"
     "@rainbow-me/rainbowkit": "npm:2.1.2"
     "@tanstack/react-query": "npm:~5.28.6"
     "@trivago/prettier-plugin-sort-imports": "npm:~4.1.1"
@@ -3161,6 +3222,7 @@ __metadata:
     "@uniswap/sdk-core": "npm:~4.0.1"
     "@uniswap/v2-sdk": "npm:~3.0.1"
     abitype: "npm:1.0.5"
+    apollo-server-micro: "npm:^3.13.0"
     autoprefixer: "npm:~10.4.12"
     blo: "npm:~1.0.1"
     burner-connector: "npm:~0.0.8"
@@ -3183,11 +3245,15 @@ __metadata:
     tailwindcss: "npm:~3.4.3"
     type-fest: "npm:~4.6.0"
     typescript: "npm:5.5.3"
+    typewriter-effect: "npm:^2.21.0"
     use-debounce: "npm:~8.0.4"
     usehooks-ts: "npm:2.13.0"
     vercel: "npm:~32.4.1"
-    viem: "npm:2.17.4"
+    viem: "npm:^2.21.3"
     wagmi: "npm:2.10.10"
+    web3: "npm:^4.12.1"
+    web3-plugin-zksync: "npm:^1.0.6"
+    zksync-web3-contract-paymaster-plugin: "npm:^1.0.3"
     zustand: "npm:~4.1.2"
   languageName: unknown
   linkType: soft
@@ -5085,6 +5151,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"Deworld-zksync@workspace:packages/subgraph-zksync":
+  version: 0.0.0-use.local
+  resolution: "Deworld-zksync@workspace:packages/subgraph-zksync"
+  dependencies:
+    "@graphprotocol/graph-cli": "npm:0.80.1"
+    "@graphprotocol/graph-ts": "npm:0.32.0"
+    matchstick-as: "npm:0.5.0"
+  languageName: unknown
+  linkType: soft
+
 "JSONStream@npm:1.3.2":
   version: 1.3.2
   resolution: "JSONStream@npm:1.3.2"
@@ -6000,6 +6076,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.4.0":
+  version: 1.7.7
+  resolution: "axios@npm:1.7.7"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10/7f875ea13b9298cd7b40fd09985209f7a38d38321f1118c701520939de2f113c4ba137832fe8e3f811f99a38e12c8225481011023209a77b0c0641270e20cde1
+  languageName: node
+  linkType: hard
+
 "axios@npm:^1.5.1":
   version: 1.7.5
   resolution: "axios@npm:1.7.5"
@@ -6632,6 +6719,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.2, chalk@npm:^4, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: "npm:^4.1.0"
+    supports-color: "npm:^7.1.0"
+  checksum: 10/cb3f3e594913d63b1814d7ca7c9bafbf895f75fbf93b92991980610dfd7b48500af4e3a5d4e3a8f337990a96b168d7eb84ee55efdce965e2ee8efc20f8c8f139
+  languageName: node
+  linkType: hard
+
 "chalk@npm:5.2.0":
   version: 5.2.0
   resolution: "chalk@npm:5.2.0"
@@ -6647,16 +6744,6 @@ __metadata:
     escape-string-regexp: "npm:^1.0.5"
     supports-color: "npm:^5.3.0"
   checksum: 10/3d1d103433166f6bfe82ac75724951b33769675252d8417317363ef9d54699b7c3b2d46671b772b893a8e50c3ece70c4b933c73c01e81bc60ea4df9b55afa303
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: "npm:^4.1.0"
-    supports-color: "npm:^7.1.0"
-  checksum: 10/cb3f3e594913d63b1814d7ca7c9bafbf895f75fbf93b92991980610dfd7b48500af4e3a5d4e3a8f337990a96b168d7eb84ee55efdce965e2ee8efc20f8c8f139
   languageName: node
   linkType: hard
 
@@ -7499,6 +7586,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"decode-uri-component@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "decode-uri-component@npm:0.4.1"
+  checksum: 10/74eec26f7bec3767164e37d526ef19bc1214cb0bbeeeea1c4f0ceb79299e5c38d3ba734e7243d829842aa140f24e5d020f54cc25b17c7082461c8eead8a72ce3
+  languageName: node
+  linkType: hard
+
 "deep-eql@npm:^4.0.1, deep-eql@npm:^4.1.3":
   version: 4.1.4
   resolution: "deep-eql@npm:4.1.4"
@@ -7764,6 +7858,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"docker-modem@npm:^3.0.0":
+  version: 3.0.8
+  resolution: "docker-modem@npm:3.0.8"
+  dependencies:
+    debug: "npm:^4.1.1"
+    readable-stream: "npm:^3.5.0"
+    split-ca: "npm:^1.0.1"
+    ssh2: "npm:^1.11.0"
+  checksum: 10/a731d057b3da5a9da3dd9aff7e25bc33f2d29f3e0af947bd823d1361350071afb5b7cb0582af5bf012b08fca356520685bcff87bfcba08e85725576b32f264a2
+  languageName: node
+  linkType: hard
+
 "docker-modem@npm:^5.0.3":
   version: 5.0.3
   resolution: "docker-modem@npm:5.0.3"
@@ -7784,6 +7890,17 @@ __metadata:
     docker-modem: "npm:^1.0.8"
     tar-fs: "npm:~1.16.3"
   checksum: 10/13111cfcaf47905cd2cd323a07cb5b79404ef5e9032e33ef3a6f71d1f72283d9b2921b6de955c8454b147bbf4db33822a80d960b2250e3e8aed62ffe0b43083f
+  languageName: node
+  linkType: hard
+
+"dockerode@npm:^3.3.4":
+  version: 3.3.5
+  resolution: "dockerode@npm:3.3.5"
+  dependencies:
+    "@balena/dockerignore": "npm:^1.0.2"
+    docker-modem: "npm:^3.0.0"
+    tar-fs: "npm:~2.0.1"
+  checksum: 10/1748e8d96f88fe71bb165a4c05726904937f5863b69eaeb4a3c1bb3bbf66940c7bef13b349ff757dc43664b4367611aab76f35c1ba468f07dcbaba567e6acd88
   languageName: node
   linkType: hard
 
@@ -7829,16 +7946,6 @@ __metadata:
   checksum: 10/d6788c8e40b35ad9a9ca29249dccf37fa6b3ad26700fcbc87f2f41101bf914f5193a04e36a3d23de70b1dcb8e5d5a3b21e151debace2c4cd08d868be500a1b29
   languageName: node
   linkType: hard
-
-"Deworld-zksync@workspace:packages/subgraph-zksync":
-  version: 0.0.0-use.local
-  resolution: "Deworld-zksync@workspace:packages/subgraph-zksync"
-  dependencies:
-    "@graphprotocol/graph-cli": "npm:0.80.1"
-    "@graphprotocol/graph-ts": "npm:0.32.0"
-    matchstick-as: "npm:0.5.0"
-  languageName: unknown
-  linkType: soft
 
 "duplexify@npm:^4.1.2":
   version: 4.1.3
@@ -9161,7 +9268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:^6.13.2":
+"ethers@npm:^6.10.0, ethers@npm:^6.13.2":
   version: 6.13.2
   resolution: "ethers@npm:6.13.2"
   dependencies:
@@ -9551,6 +9658,13 @@ __metadata:
   version: 1.1.0
   resolution: "filter-obj@npm:1.1.0"
   checksum: 10/9d681939eec2b4b129cb4f307b7e93d954a0657421d4e5357d86093b26d3f4f570909ed43717dcfd62428b3cf8cddd9841b35f9d40d12ac62cfabaa677942593
+  languageName: node
+  linkType: hard
+
+"filter-obj@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "filter-obj@npm:5.1.0"
+  checksum: 10/8f6dab6d8d8855f686e8cc6be289bbbd64a80be52c660124e36e982f78017cf5dae7de95f79ec167fbf62101d6aab93067a3105ae8f56251785a721e678d6b07
   languageName: node
   linkType: hard
 
@@ -14881,6 +14995,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-string@npm:^9.0.0":
+  version: 9.1.0
+  resolution: "query-string@npm:9.1.0"
+  dependencies:
+    decode-uri-component: "npm:^0.4.1"
+    filter-obj: "npm:^5.1.0"
+    split-on-first: "npm:^3.0.0"
+  checksum: 10/87a0ea851f62d6abe5c6c60bc0114e5df1af73f6dbdfd3086ab82624330cafe92310029d834ee6117d92e3de877f2959cb634c31a55a1aef4acddaa11ad8be20
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2, queue-microtask@npm:^1.2.3":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -15251,21 +15376,6 @@ __metadata:
     react:
       optional: true
   checksum: 10/3897c93270836159406529e0fa983bf4a11c07d2efc5c8f6bdfd7f6821d3b84a30d911c3f3b9c689948739e6955c5835c8dd9d91579150bec5092f356c0d91df
-  languageName: node
-  linkType: hard
-
-"rehackt@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "rehackt@npm:0.1.0"
-  peerDependencies:
-    "@types/react": "*"
-    react: "*"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    react:
-      optional: true
-  checksum: 10/c81adead82c165dffc574cbf9e1de3605522782a56b48df48b68d53d45c4d8c9253df3790109335bf97072424e54ad2423bb9544ca3a985fa91995dda43452fc
   languageName: node
   linkType: hard
 
@@ -15691,13 +15801,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    "@apollo/client": "npm:^3.11.5"
-    "@ora-io/web3-plugin-ora": "npm:^0.0.6"
-    apollo-server-micro: "npm:^3.13.0"
     husky: "npm:~8.0.3"
     lint-staged: "npm:~13.2.2"
-    typewriter-effect: "npm:^2.21.0"
-    web3: "npm:^4.12.1"
   languageName: unknown
   linkType: soft
 
@@ -16171,6 +16276,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"split-on-first@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "split-on-first@npm:3.0.0"
+  checksum: 10/75dc27ecbac65cfbeab9a3b90cf046307220192d3d7a30e46aa0f19571cc9b4802aac813f3de2cc9b16f2e46aae72f275659b5d2614bb5369c77724d739e5f73
+  languageName: node
+  linkType: hard
+
 "split2@npm:^4.0.0":
   version: 4.2.0
   resolution: "split2@npm:4.2.0"
@@ -16192,7 +16304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ssh2@npm:^1.15.0":
+"ssh2@npm:^1.11.0, ssh2@npm:^1.15.0":
   version: 1.15.0
   resolution: "ssh2@npm:1.15.0"
   dependencies:
@@ -18021,27 +18133,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:2.17.4":
-  version: 2.17.4
-  resolution: "viem@npm:2.17.4"
-  dependencies:
-    "@adraffy/ens-normalize": "npm:1.10.0"
-    "@noble/curves": "npm:1.4.0"
-    "@noble/hashes": "npm:1.4.0"
-    "@scure/bip32": "npm:1.4.0"
-    "@scure/bip39": "npm:1.3.0"
-    abitype: "npm:1.0.5"
-    isows: "npm:1.0.4"
-    ws: "npm:8.17.1"
-  peerDependencies:
-    typescript: ">=5.0.4"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 10/29e2b7d9034ea0520c47ef25cd8048078f8a0bacd24e1c468ee2ec5c51f780429e1bbb914611b54b8ee19f7eb251e171af67db7f27b97209c16cf8e917b405bf
-  languageName: node
-  linkType: hard
-
 "viem@npm:^1.0.0, viem@npm:^1.1.4":
   version: 1.21.4
   resolution: "viem@npm:1.21.4"
@@ -18060,6 +18151,28 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/2007a8a674301d790b3172a0a84bd1659f76332ac13a78d695f7cee0602388103a07b2d6a3fc46b4f27582f8b506f7c1f90f13c5e21e464daffc6cccb14fbc3a
+  languageName: node
+  linkType: hard
+
+"viem@npm:^2.21.3":
+  version: 2.21.4
+  resolution: "viem@npm:2.21.4"
+  dependencies:
+    "@adraffy/ens-normalize": "npm:1.10.0"
+    "@noble/curves": "npm:1.4.0"
+    "@noble/hashes": "npm:1.4.0"
+    "@scure/bip32": "npm:1.4.0"
+    "@scure/bip39": "npm:1.4.0"
+    abitype: "npm:1.0.5"
+    isows: "npm:1.0.4"
+    webauthn-p256: "npm:0.0.5"
+    ws: "npm:8.17.1"
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10/9e589af23127ac40c7510402d5f3fc433dd039552748715c6abf65ef1290fb0c0c44c9a66fe56a942801eaabdda57793de3a84ff046acecc7ef5d5c137ccb50f
   languageName: node
   linkType: hard
 
@@ -18450,6 +18563,16 @@ __metadata:
     web3-utils: "npm:^4.3.1"
     web3-validator: "npm:^2.0.6"
   checksum: 10/6747d98e087c8cbdc17d972edd433eb8e88a37d35d03984b2921cd300b6538240310dc88642a8a908cd0f3a0ca50dfc857ef2d7a9e01a6a4363e44cbdfcac3b9
+  languageName: node
+  linkType: hard
+
+"webauthn-p256@npm:0.0.5":
+  version: 0.0.5
+  resolution: "webauthn-p256@npm:0.0.5"
+  dependencies:
+    "@noble/curves": "npm:^1.4.0"
+    "@noble/hashes": "npm:^1.4.0"
+  checksum: 10/6bf5d1857dfb99ecb3b318af06eddea874c10135e6ebb9f046270f5cbb162933bc6caf77aedb033e14c09971dda544a5fb367ac545e4ec8001b309ba517555cf
   languageName: node
   linkType: hard
 
@@ -19010,6 +19133,26 @@ __metadata:
   version: 0.8.15
   resolution: "zen-observable@npm:0.8.15"
   checksum: 10/30eac3f4055d33f446b4cd075d3543da347c2c8e68fbc35c3f5a19fb43be67c6ed27ee136bc8f8933efa547be7ce04957809ad00ee7f1b00a964f199ae6fb514
+  languageName: node
+  linkType: hard
+
+"zksync-ethers@npm:^6.8.0":
+  version: 6.12.1
+  resolution: "zksync-ethers@npm:6.12.1"
+  peerDependencies:
+    ethers: ^6.7.1
+  checksum: 10/c5d2e81a370758e1613dd5df4c60b78b9371943d321ae216b81d6471e6eeced507bf58c43a47852768e9ee4a18f37c6667ffb3f7cba74c9f31350f08e4f2adb8
+  languageName: node
+  linkType: hard
+
+"zksync-web3-contract-paymaster-plugin@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "zksync-web3-contract-paymaster-plugin@npm:1.0.3"
+  dependencies:
+    web3: "npm:^4.12.1"
+    web3-plugin-zksync: "npm:^1.0.6"
+    zksync-web3: "npm:^0.17.1"
+  checksum: 10/3fe4447cdabb0035d6ab7d209d163489c10ecbea1f41f411f0e31f21e4ac18469413a0f87463b8868d341c72541cd655d3c3227f7d09156f089ae6dd6e793d54
   languageName: node
   linkType: hard
 

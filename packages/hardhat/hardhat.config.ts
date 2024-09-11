@@ -10,6 +10,7 @@ import "@nomicfoundation/hardhat-verify";
 import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 
+
 const rpcUrlHederatestnet = "https://testnet.hashio.io/api";
 
 // If not set, it uses ours Alchemy's default API key.
@@ -29,6 +30,11 @@ const testAccounts = [
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 const config: HardhatUserConfig = {
+  zksolc: {
+    version: "latest",
+    settings: {},
+  },
+  defaultNetwork: "localhost",
   solidity: {
     version: "0.8.17",
     settings: {
@@ -39,7 +45,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  // defaultNetwork: "localhost",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -146,10 +152,11 @@ const config: HardhatUserConfig = {
       gasMultiplier: 1.1,
       accounts: [deployerPrivateKey, ...testAccounts],
     },
-    zkSyncSepolia: {
-      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of ZKsync Era network.
+    zkSyncTestnet: {
+      url: "https://sepolia.era.zksync.dev",
+      ethNetwork: "sepolia",
       zksync: true,
-      accounts: [deployerPrivateKey, ...testAccounts],
+      // Verification endpoint for Sepolia
     },
     pgnTestnet: {
       url: "https://sepolia.publicgoods.network",

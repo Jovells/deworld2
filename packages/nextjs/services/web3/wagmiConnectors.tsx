@@ -6,9 +6,12 @@ import {
   rainbowWallet,
   safeWallet,
   walletConnectWallet,
+  zealWallet,
+  braveWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { rainbowkitBurnerWallet } from "burner-connector";
 import * as chains from "viem/chains";
+import { injected } from "wagmi/connectors";
 import scaffoldConfig from "~~/scaffold.config";
 
 const { onlyLocalBurnerWallet, targetNetworks } = scaffoldConfig;
@@ -17,6 +20,8 @@ const wallets = [
   metaMaskWallet,
   walletConnectWallet,
   ledgerWallet,
+  zealWallet,
+  braveWallet,
   coinbaseWallet,
   rainbowWallet,
   safeWallet,

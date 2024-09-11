@@ -8,14 +8,14 @@ dataSources:
     name: contracts/Deworld.sol_Deworld
     network: zksync-era-sepolia
     source:
-      address: "0x0167996EfE7eFB6EEC3366694e26d935829d9916"
+      address: "0xEc969112DB5440c954CB60B4Bbd1159673eeE4C3"
       abi: contracts/Deworld.sol_Deworld
-      startBlock: 3706942
+      startBlock: 3756807
+
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
-      entities:
       entities:
         - Planet
         - Product
@@ -32,20 +32,20 @@ dataSources:
         - event: ProductAdded(indexed uint256,indexed uint256,indexed
             address,string,string,uint256,uint256)
           handler: handleProductAdded
-        - event: Sale(indexed address,uint256,uint256)
+        - event: Sale(indexed uint256,uint256,indexed address,indexed address,uint256)
           handler: handleSale
-        - event: Delivered(indexed address,uint256,uint256)
+        - event: Delivered(indexed address,indexed uint256,uint256)
           handler: handleDelivered
-        - event: Release(indexed address,uint256,uint256)
+        - event: Release(indexed address,indexed uint256,uint256)
           handler: handleRelease
-        - event: Refund(indexed address,indexed address,uint256,uint256)
+        - event: Refund(indexed address,indexed address,indexed uint256,uint256)
           handler: handleRefund
         - event: AppealRaised(indexed uint256,indexed address)
           handler: handleAppealRaised
-        - event: ApprovalRequested(indexed address,uint256)
+        - event: ApprovalRequested(indexed address,indexed uint256)
           handler: handleApprovalRequested
-        - event: ApprovalGranted(indexed address,uint256)
+        - event: ApprovalGranted(indexed address,indexed uint256)
           handler: handleApprovalGranted
-        - event: ApprovalDeclined(indexed address,uint256)
+        - event: ApprovalDeclined(indexed address,indexed uint256)
           handler: handleApprovalDeclined
       file: ../subgraph/src/mapping.ts

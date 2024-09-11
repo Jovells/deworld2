@@ -4,15 +4,19 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { DEWORLD_SEPOLIA_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
+import { DEWORLD_ZKSYNC_ADDRESS, THE_GRAPH_URL } from "~~/app/constants";
 import { Address, EtherInput } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { useScaffoldContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import usePaymasterAsync from "./usePaymasterAsync";
 
 /* eslint-disable @next/next/no-img-element */
 const ProductDetails: NextPage = () => {
   const { writeContractAsync, isPending: pending } = useScaffoldWriteContract("Deworld");
   const { writeContractAsync: writeMockUSDTAsync, isPending: approvalPending } = useScaffoldWriteContract("MockUSDT");
+  const { writeContractWithPaymaster: buywithPaymasterAsync, 
+    isPending: isPaymasterPending } = usePaymasterAsync(DEWORLD_ZKSYNC_ADDRESS, deployedContracts[300].Deworld.abi as any,
+        "0xd851E8cDca408A80691255F823F76C057b08ccCc");
   const [productId, setProductId] = useState<any>(null);
   const [product, setProduct] = useState({});
   const [itemQty, setItemQty] = useState<any>(1);
@@ -63,7 +67,7 @@ const ProductDetails: NextPage = () => {
       await writeMockUSDTAsync(
         {
           functionName: "approve",
-          args: [DEWORLD_SEPOLIA_ADDRESS, product?.price],
+          args: [DEWORLD_ZKSYNC_ADDRESS, product?.price],
         },
         {
           onBlockConfirmation: txnReceipt => {
@@ -87,7 +91,29 @@ const ProductDetails: NextPage = () => {
       setIsPending(false);
     } catch (e) {
       setIsPending(false);
-      console.error("Error posting product", e);
+      console.error("Error buying product", e);
+    }
+  };
+  const buyProductWithPayMaster = async () => {
+    console.log("argsProduct", productId, itemQty);
+    try {
+      await buywithPaymasterAsync(
+        {
+          functionName: "purchaseProduct",
+          args: [productId, itemQty],
+        },
+        {
+          onBlockConfirmation: txnReceipt => {
+            console.log("📦 Transaction hash", txnReceipt.hash);
+          },
+        },
+      );
+
+ 
+      // router?.push(`/buyer-dashboard/?id=${address}`);
+    } catch (e) {
+      setIsPending(false);
+      console.error("Error buying product", e);
     }
   };
 
@@ -158,6 +184,13 @@ const ProductDetails: NextPage = () => {
                 disabled={itemQty < 1 || isPending}
               >
                 {isPending ? <span className="loading loading-spinner loading-sm"></span> : "Buy"}
+              </button>
+              <button
+                className="bg-blue-300 p-2 rounded-lg w-full sm:w-1/2"
+                onClick={buyProductWithPayMaster}
+                disabled={itemQty < 1 || isPending}
+              >
+                {isPaymasterPending ? <span className="loading loading-spinner loading-sm"></span> : "BuyWithPayMaster"}
               </button>
             </div>
           </div>
