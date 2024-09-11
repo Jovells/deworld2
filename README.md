@@ -1,6 +1,3 @@
-Here’s the updated **README** with more emphasis on gasless transactions and the custom plugin:
-
----
 
 # DeWorld
 
@@ -35,7 +32,3 @@ DeWorld is a blockchain-based platform designed for secure and transparent onlin
 ## Project URL
 
 Visit [deworld.on-fleek.app](#) to explore the platform.
-
----
-
-This version emphasizes gasless transactions and includes the plugin link as requested.
