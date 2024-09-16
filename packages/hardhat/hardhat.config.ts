@@ -71,7 +71,7 @@ const config: HardhatUserConfig = {
       url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey, ...testAccounts],
     },
-    "lisk-sepolia": {
+    liskSepolia: {
       url: "https://rpc.sepolia-api.lisk.com",
       accounts: [deployerPrivateKey, ...testAccounts],
       gasPrice: 1000000000,
@@ -169,12 +169,28 @@ const config: HardhatUserConfig = {
     apiKey: `${etherscanApiKey}`,
     customChains: [
       {
-        network: "lisk-sepolia",
+        network: "liskSepolia",
         chainId: 4202,
         urls: {
           apiURL: "https://sepolia-blockscout.lisk.com/api",
           browserURL: "https://sepolia-blockscout.lisk.com",
         },
+      },
+      {
+        network: "baseSepolia",
+        chainId: 84532,
+        urls: {
+          apiURL: "https://api-sepolia.etherscan.io/api/",
+          browserURL: "https://sepolia.basescan.org/",
+        },
+      },
+      {
+        network: "optimismSepolia",
+        chainId: 11155420,
+        urls: {
+          apiURL: "https://optimism-sepolia.blockscout.com/api",
+          browserURL: "https://optimism-sepolia.blockscout.com"
+        }
       },
       {
         network: "rootstock",
